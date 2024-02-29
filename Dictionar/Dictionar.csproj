@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{8C0E758E-5F75-455E-9E9F-E92546AC1A4D}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>Dictionar</RootNamespace>
     <AssemblyName>Dictionar</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
@@ -33,6 +33,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -63,7 +66,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="FileHandler.cs" />
+    <Compile Include="DataHandling\Dictionary.cs" />
+    <Compile Include="DataHandling\IFileReader.cs" />
+    <Compile Include="DataHandling\IDataSource.cs" />
+    <Compile Include="DataHandling\IEntry.cs" />
+    <Compile Include="DataHandling\DictionaryEntry.cs" />
+    <Compile Include="DataHandling\XMLReader.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -95,9 +103,84 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Resources\Images\" />
-    <Folder Include="Resources\Words\" />
+    <Resource Include="Resources\Words\a\a.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Words\b\b.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Words\c\c.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Words\d\d.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Words\e\e.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Words\f\f.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Words\g\g.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Words\h\h.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Words\i\i.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Words\j\j.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Words\k\k.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Words\l\l.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Words\m\m.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Words\n\n.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Words\o\o.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Words\p\p.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Words\q\q.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Words\r\r.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Words\s\s.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Words\t\t.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Words\u\u.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Words\v\v.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Words\w\w.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Words\x\x.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Words\y\y.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Words\z\z.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

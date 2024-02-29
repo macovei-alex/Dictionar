@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dictionar
 {
-	internal class FileHandler
+	internal interface IEntry
 	{
-		private string FilePath { get; set; }
 	}
 }

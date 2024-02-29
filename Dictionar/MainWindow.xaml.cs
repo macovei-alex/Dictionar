@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dictionar.DataHandling;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,11 @@ namespace Dictionar
 		public MainWindow()
 		{
 			InitializeComponent();
+
+			const string RESOURCES_DIR = "..\\..\\Resources";
+
+			XMLReader reader = new XMLReader(RESOURCES_DIR + "\\Words\\a\\a.xml");
+			reader.PrintContents();
 		}
 	}
 }
