@@ -36,37 +36,39 @@ namespace Dictionar.DataHandling
 				LoadContents();
 			}
 
-			PrintXmlNode(Document.DocumentElement);
+			PrintXmlNode(Document.DocumentElement, string.Empty);
 		}
 
-		private void PrintXmlNode(XmlNode node, string indent = "")
+		private void PrintXmlNode(XmlNode node, string indent)
 		{
-			if (node != null)
+			if (node == null)
 			{
-				switch (node.NodeType)
-				{
-					case XmlNodeType.Element:
-						Console.WriteLine($"{indent}<{node.Name}>");
-						foreach (XmlAttribute attribute in node.Attributes)
-						{
-							Console.WriteLine($"{indent}\t{attribute.Name} = '{attribute.Value}'");
-						}
-						break;
-					case XmlNodeType.Text:
-						Console.WriteLine($"{indent}{node.InnerText}");
-						break;
-				}
+				return;
+			}
 
-				// Recursively print child nodes
-				foreach (XmlNode childNode in node.ChildNodes)
-				{
-					PrintXmlNode(childNode, indent + '\t');
-				}
+			switch (node.NodeType)
+			{
+				case XmlNodeType.Element:
+					Console.WriteLine($"{indent}<{node.Name}>");
+					foreach (XmlAttribute attribute in node.Attributes)
+					{
+						Console.WriteLine($"{indent}\t{attribute.Name} = '{attribute.Value}'");
+					}
+					break;
 
-				if (node.NodeType == XmlNodeType.Element)
-				{
-					Console.WriteLine($"{indent}</{node.Name}>");
-				}
+				case XmlNodeType.Text:
+					Console.WriteLine($"{indent}{node.InnerText}");
+					break;
+			}
+
+			foreach (XmlNode childNode in node.ChildNodes)
+			{
+				PrintXmlNode(childNode, indent + '\t');
+			}
+
+			if (node.NodeType == XmlNodeType.Element)
+			{
+				Console.WriteLine($"{indent}</{node.Name}>");
 			}
 		}
 
