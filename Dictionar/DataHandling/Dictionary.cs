@@ -15,9 +15,14 @@ namespace Dictionar.DataHandling
 			DataSource = dataSource;
 		}
 
-		public void CreateEntry(DictionaryEntry entry)
+		public void CreateEntry(IEntry entry)
 		{
 			DataSource.CreateEntry(entry);
+		}
+
+		public IEntry ReadEntry(IEntry entry)
+		{
+			return DataSource.ReadEntry(entry);
 		}
 	}
 }

@@ -107,84 +107,33 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Resource Include="Resources\Words\a\a.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Words\b\b.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Words\c\c.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Words\d\d.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Words\e\e.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Words\f\f.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Words\g\g.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Words\h\h.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Words\i\i.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Words\j\j.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Words\k\k.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Words\l\l.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Words\m\m.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Words\n\n.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Words\o\o.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Words\p\p.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Words\q\q.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Words\r\r.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Words\s\s.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Words\t\t.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Words\u\u.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Words\v\v.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Words\w\w.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Words\x\x.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Words\y\y.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Words\z\z.xml" />
+    <Folder Include="Resources\Words\a\" />
+    <Folder Include="Resources\Words\b\" />
+    <Folder Include="Resources\Words\c\" />
+    <Folder Include="Resources\Words\d\" />
+    <Folder Include="Resources\Words\e\" />
+    <Folder Include="Resources\Words\f\" />
+    <Folder Include="Resources\Words\g\" />
+    <Folder Include="Resources\Words\h\" />
+    <Folder Include="Resources\Words\i\" />
+    <Folder Include="Resources\Words\j\" />
+    <Folder Include="Resources\Words\k\" />
+    <Folder Include="Resources\Words\l\" />
+    <Folder Include="Resources\Words\m\" />
+    <Folder Include="Resources\Words\n\" />
+    <Folder Include="Resources\Words\o\" />
+    <Folder Include="Resources\Words\p\" />
+    <Folder Include="Resources\Words\q\" />
+    <Folder Include="Resources\Words\r\" />
+    <Folder Include="Resources\Words\s\" />
+    <Folder Include="Resources\Words\t\" />
+    <Folder Include="Resources\Words\u\" />
+    <Folder Include="Resources\Words\v\" />
+    <Folder Include="Resources\Words\w\" />
+    <Folder Include="Resources\Words\x\" />
+    <Folder Include="Resources\Words\y\" />
+    <Folder Include="Resources\Words\z\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

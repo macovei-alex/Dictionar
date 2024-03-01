@@ -9,15 +9,25 @@ namespace Dictionar.DataHandling
 {
 	internal abstract class FileEntry : IEntry
 	{
-		[JsonIgnore]
-		public abstract char FirstLetter { get; }
-
-		[JsonIgnore]
 		public abstract string Name { get; }
 
-		[JsonIgnore]
 		public abstract string FileName { get; }
 
+		public string CollectionKey
+		{
+			get
+			{
+				return Name[0].ToString().ToLower();
+			}
+		}
+
+		public string Key
+		{
+			get
+			{
+				return Name;
+			}
+		}
 
 		public abstract string Serialize();
 

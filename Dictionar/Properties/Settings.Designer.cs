@@ -25,10 +25,11 @@ namespace Dictionar.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Mac\\Facultate\\Anul_2\\MAP\\tema1 - Dictionar\\Dictionar\\Dictionar\\Resources")]
-        public string ResourcesDirectory {
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Mac\\Facultate\\Anul_2\\MAP\\tema1 - Dictionar\\Dictionar\\Dictionar\\Resources\\Words" +
+            "")]
+        public string WordsDirectory {
             get {
-                return ((string)(this["ResourcesDirectory"]));
+                return ((string)(this["WordsDirectory"]));
             }
         }
     }

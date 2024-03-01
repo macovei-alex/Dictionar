@@ -25,8 +25,12 @@ namespace Dictionar
 		{
 			InitializeComponent();
 
-			FileSystemDataSource dataSource = new FileSystemDataSource(Properties.Settings.Default.ResourcesDirectory);
-			dataSource.CreateEntry(new DictionaryEntry("Apple", "Red tasty fruit", "[insert image here]"));
+			Dictionary dictionary = new Dictionary(
+				new FileSystemDataSource(Properties.Settings.Default.WordsDirectory));
+
+			dictionary.CreateEntry(new DictionaryEntry("Apple", "Red tasty fruit", "[insert image here]"));
+
+			Console.WriteLine(dictionary.ReadEntry(new DictionaryEntry("Apple")) as DictionaryEntry);
 		}
 	}
 }

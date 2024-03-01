@@ -21,14 +21,6 @@ namespace Dictionar.DataHandling
 			}
 		}
 
-		public override char FirstLetter
-		{
-			get
-			{
-				return Name[0];
-			}
-		}
-
 		public override string FileName
 		{
 			get
@@ -37,11 +29,26 @@ namespace Dictionar.DataHandling
 			}
 		}
 
+		[JsonConstructor]
 		public DictionaryEntry(string word, string description, string image)
 		{
 			Word = word;
 			Description = description;
 			Image = image;
+		}
+
+		public DictionaryEntry(IEntry entry)
+		{
+			Word = entry.Key;
+			Description = string.Empty;
+			Image = string.Empty;
+		}
+
+		public DictionaryEntry(string word)
+		{
+			Word = word;
+			Description = string.Empty;
+			Image = string.Empty;
 		}
 
 		public override string Serialize()
@@ -53,6 +60,11 @@ namespace Dictionar.DataHandling
 				$"\t\"Description\": \"{Description}\",\n" +
 				$"\t\"Image\": \"{Image}\"\n" +
 				$"}}\n";*/
+		}
+
+		public override string ToString()
+		{
+			return $"{Word}: {Description}";
 		}
 	}
 }

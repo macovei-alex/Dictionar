@@ -10,9 +10,7 @@ namespace Dictionar
 	{
 		void CreateEntry(IEntry entry);
 
-		IEntry ReadRandomEntry();
-		IEntry ReadEntry(string name);
-		IEntry ReadByPreffix(string preffix);
+		IEntry ReadEntry(IEntry entry);
 
 		void UpdateEntry(IEntry entry);
 

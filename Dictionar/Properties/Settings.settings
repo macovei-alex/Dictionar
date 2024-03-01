@@ -2,8 +2,8 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Dictionar.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="ResourcesDirectory" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">C:\Mac\Facultate\Anul_2\MAP\tema1 - Dictionar\Dictionar\Dictionar\Resources</Value>
+    <Setting Name="WordsDirectory" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Mac\Facultate\Anul_2\MAP\tema1 - Dictionar\Dictionar\Dictionar\Resources\Words</Value>
     </Setting>
   </Settings>
 </SettingsFile>

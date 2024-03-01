@@ -17,19 +17,20 @@ namespace Dictionar.DataHandling
 			DirectoryPath = directoryPath;
 		}
 
-		public IEntry ReadRandomEntry()
+		public IEntry ReadEntry(IEntry entry)
 		{
-			throw new NotImplementedException();
+			// TODO: template this function
+
+			return ReadEntry(new DictionaryEntry(entry));
 		}
 
-		public IEntry ReadEntry(string name)
+		public IEntry ReadEntry(FileEntry entry)
 		{
-			throw new NotImplementedException();
-		}
+			// TODO: template this function
 
-		public IEntry ReadByPreffix(string preffix)
-		{
-			throw new NotImplementedException();
+			return JsonConvert.DeserializeObject<DictionaryEntry>(
+				File.ReadAllText(
+					Path.Combine(DirectoryPath, entry.CollectionKey, entry.FileName)));
 		}
 
 		public void CreateEntry(IEntry entry)
@@ -40,7 +41,8 @@ namespace Dictionar.DataHandling
 		public void CreateEntry(FileEntry entry)
 		{
 			byte[] entryBytes = Encoding.UTF8.GetBytes(entry.Serialize());
-			FileStream fileStream = File.Create(Path.Combine(DirectoryPath, entry.FileName));
+			FileStream fileStream = File.Create(
+				Path.Combine(DirectoryPath, entry.CollectionKey, entry.FileName));
 			fileStream.Write(entryBytes, 0, entryBytes.Length);
 			fileStream.Close();
 		}
