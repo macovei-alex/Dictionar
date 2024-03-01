@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,14 @@ namespace Dictionar.DataHandling
 			}
 		}
 
+		public override char FirstLetter
+		{
+			get
+			{
+				return Name[0];
+			}
+		}
+
 		public override string FileName
 		{
 			get
@@ -37,11 +46,13 @@ namespace Dictionar.DataHandling
 
 		public override string Serialize()
 		{
-			return $"{{" +
-				$"\"Word\": {Word},\n" +
-				$"\"Description: \"{Description},\n" +
-				$"\"Image\": {Image}\n" +
-				$"}}";
+			return JsonConvert.SerializeObject(this);
+
+			/*return $"{{\n" +
+				$"\t\"Word\": \"{Word}\",\n" +
+				$"\t\"Description\": \"{Description}\",\n" +
+				$"\t\"Image\": \"{Image}\"\n" +
+				$"}}\n";*/
 		}
 	}
 }
