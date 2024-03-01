@@ -54,17 +54,11 @@ namespace Dictionar.DataHandling
 		public override string Serialize()
 		{
 			return JsonConvert.SerializeObject(this);
-
-			/*return $"{{\n" +
-				$"\t\"Word\": \"{Word}\",\n" +
-				$"\t\"Description\": \"{Description}\",\n" +
-				$"\t\"Image\": \"{Image}\"\n" +
-				$"}}\n";*/
 		}
 
 		public override string ToString()
 		{
-			return $"{Word}: {Description}";
+			return $"Word: {Word}, Description: {Description}, Image: {Image}";
 		}
 	}
 }
