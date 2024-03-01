@@ -6,15 +6,14 @@ using System.Threading.Tasks;
 
 namespace Dictionar
 {
-	internal interface IDataSource
+	internal interface IDataSource<T> where T : IEntry
 	{
-		void CreateEntry(IEntry entry);
+		void CreateEntry(T entry);
 
-		IEntry ReadEntry(IEntry entry);
+		T ReadEntry(T entry);
 
-		void UpdateEntry(IEntry entry);
+		void UpdateEntry(T entry);
 
-		void DeleteEntry(IEntry entry);
-		void DeleteEntry(string name);
+		void DeleteEntry(T entry);
 	}
 }
