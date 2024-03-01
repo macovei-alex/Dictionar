@@ -8,8 +8,15 @@ namespace Dictionar
 {
 	internal interface IDataSource
 	{
-		IEntry GetRandomEntry();
-		IEntry GetEntry(string name);
-		IEntry GetByPreffix(string preffix);
+		void CreateEntry(IEntry entry);
+
+		IEntry ReadRandomEntry();
+		IEntry ReadEntry(string name);
+		IEntry ReadByPreffix(string preffix);
+
+		void UpdateEntry(IEntry entry);
+
+		void DeleteEntry(IEntry entry);
+		void DeleteEntry(string name);
 	}
 }

@@ -25,10 +25,8 @@ namespace Dictionar
 		{
 			InitializeComponent();
 
-			const string RESOURCES_DIR = "..\\..\\Resources";
-
-			XMLReader reader = new XMLReader(RESOURCES_DIR + "\\Words\\a\\a.xml");
-			reader.PrintContents();
+			FileSystemDataSource dataSource = new FileSystemDataSource(Properties.Settings.Default.ResourcesDirectory);
+			dataSource.CreateEntry(new DictionaryEntry("Apple", "Red tasty fruit", "[insert image here]"));
 		}
 	}
 }

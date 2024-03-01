@@ -67,11 +67,11 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DataHandling\Dictionary.cs" />
-    <Compile Include="DataHandling\IFileReader.cs" />
     <Compile Include="DataHandling\IDataSource.cs" />
     <Compile Include="DataHandling\IEntry.cs" />
     <Compile Include="DataHandling\DictionaryEntry.cs" />
-    <Compile Include="DataHandling\XMLReader.cs" />
+    <Compile Include="DataHandling\FileSystemDataSource.cs" />
+    <Compile Include="DataHandling\FileEntry.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
