@@ -24,5 +24,17 @@ namespace Dictionar.DataHandling
 		{
 			return DataSource.ReadEntry(entry);
 		}
+
+		public IEntry CreateEntryOrNull(IEntry entry)
+		{
+			try
+			{
+				return DataSource.ReadEntry(entry);
+			}
+			catch (Exception)
+			{
+				return null;
+			}
+		}
 	}
 }

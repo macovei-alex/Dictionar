@@ -17,22 +17,6 @@ namespace Dictionar.DataHandling
 			DirectoryPath = directoryPath;
 		}
 
-		public IEntry ReadEntry(IEntry entry)
-		{
-			// TODO: template this function
-
-			return ReadEntry(new DictionaryEntry(entry));
-		}
-
-		public IEntry ReadEntry(FileEntry entry)
-		{
-			// TODO: template this function
-
-			return JsonConvert.DeserializeObject<DictionaryEntry>(
-				File.ReadAllText(
-					Path.Combine(DirectoryPath, entry.CollectionKey, entry.FileName)));
-		}
-
 		public void CreateEntry(IEntry entry)
 		{
 			CreateEntry(entry as FileEntry);
@@ -40,11 +24,35 @@ namespace Dictionar.DataHandling
 
 		public void CreateEntry(FileEntry entry)
 		{
+			var path = Path.Combine(DirectoryPath, entry.CollectionKey, entry.FileName);
+			if (File.Exists(path))
+			{
+				throw new Exception("File already exists");
+			}
+
 			byte[] entryBytes = Encoding.UTF8.GetBytes(entry.Serialize());
-			FileStream fileStream = File.Create(
-				Path.Combine(DirectoryPath, entry.CollectionKey, entry.FileName));
+
+			FileStream fileStream = File.Create(path);
+
 			fileStream.Write(entryBytes, 0, entryBytes.Length);
 			fileStream.Close();
+		}
+
+		public IEntry ReadEntry(IEntry entry)
+		{
+			return ReadEntry<FileEntry>(entry as FileEntry);
+		}
+
+		public T ReadEntry<T>(FileEntry entry)
+		{
+			var path = Path.Combine(DirectoryPath, entry.CollectionKey, entry.FileName);
+			var ret = JsonConvert.DeserializeObject<T>(File.ReadAllText(path));
+			if (ret == null)
+			{
+				throw new Exception("Bad entry format");
+			}
+
+			return ret;
 		}
 
 		public void UpdateEntry(IEntry entry)
