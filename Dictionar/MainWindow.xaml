@@ -9,15 +9,15 @@
     <Grid Margin="50, 100">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
 
-        <Label Content="Please select a mode:" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="15"/>
-        <Button Content="Dictionary mode" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Padding="10, 5" MinWidth="250"/>
-        <Button Content="Administrator mode" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Padding="10, 5" MinWidth="250"/>
-        <Button Content="Game mode" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Padding="10, 5" MinWidth="250"/>
+        <Label Content="Please select a mode:" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="15" FontFamily="Consolas"/>
+        <Button Content="Dictionary mode" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Consolas" Padding="10, 5" MinWidth="250"/>
+        <Button Content="Administrator mode" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Consolas" Padding="10, 5" MinWidth="250"/>
+        <Button Content="Game mode" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Consolas" Padding="10, 5" MinWidth="250"/>
         
     </Grid>
 </Window>
