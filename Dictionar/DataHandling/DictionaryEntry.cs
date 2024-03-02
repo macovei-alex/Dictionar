@@ -56,6 +56,11 @@ namespace Dictionar.DataHandling
 			return JsonConvert.SerializeObject(this);
 		}
 
+		public byte[] ToBytes()
+		{
+			return Encoding.UTF8.GetBytes(Serialize());
+		}
+
 		public override string ToString()
 		{
 			return $"Word: {Word}, Description: {Description}, Image: {Image}";
