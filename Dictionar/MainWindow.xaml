@@ -5,8 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Dictionar"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="450" Width="400">
+    <Grid Margin="50, 100">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Please select a mode:" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="15"/>
+        <Button Content="Dictionary mode" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Padding="10, 5" MinWidth="250"/>
+        <Button Content="Administrator mode" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Padding="10, 5" MinWidth="250"/>
+        <Button Content="Game mode" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Padding="10, 5" MinWidth="250"/>
         
     </Grid>
 </Window>
