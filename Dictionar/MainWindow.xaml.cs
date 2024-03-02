@@ -24,12 +24,19 @@ namespace Dictionar
 		public MainWindow()
 		{
 			InitializeComponent();
+			MainFrame.Navigate(new Uri("Pages\\DictionaryModePage.xaml", UriKind.Relative));
+			SizeToContent = SizeToContent.WidthAndHeight;
 
 			/*Dictionary dictionary = new Dictionary(new FileSystemDataSource<DictionaryEntry>(Properties.Settings.Default.WordsDirectory));
 
 			dictionary.UpdateEntry(new DictionaryEntry("Apple", "Red fruit", "[insert image here]"));
 			dictionary.UpdateEntry(new DictionaryEntry("Carrot", "Orange vegetable", "[insert image here]"));
 			dictionary.UpdateEntry(new DictionaryEntry("Bomb", "Explosive device", "[insert image here]"));*/
+		}
+
+		public void NavigateToPage(string pageName)
+		{
+			MainFrame.Navigate(new Uri($"Pages\\{pageName}.xaml", UriKind.Relative));
 		}
 	}
 }

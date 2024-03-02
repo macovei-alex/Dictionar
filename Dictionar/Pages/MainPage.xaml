@@ -1,0 +1,25 @@
+﻿<Page x:Class="Dictionar.Pages.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Dictionar.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="400"
+      Width="400" Height="450"
+      Title="MainPage">
+
+    <Grid Margin="50, 100" Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+
+        <Label Name="selectModeLabel" Content="Please select a mode:" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="15" FontFamily="Consolas"/>
+        <Button Name="dictionaryButton" Content="Dictionary mode" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Consolas" Padding="10, 5" MinWidth="250" Click="dictionaryButton_Click"/>
+        <Button Name="administratorButton" Content="Administrator mode" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Consolas" Padding="10, 5" MinWidth="250"/>
+        <Button Name="gameButton"  Content="Game mode" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Consolas" Padding="10, 5" MinWidth="250"/>
+    </Grid>
+</Page>

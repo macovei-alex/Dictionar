@@ -5,19 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Dictionar"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="400">
-    <Grid Margin="50, 100">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="2*"/>
-        </Grid.RowDefinitions>
-
-        <Label Name="selectModeLabel" Content="Please select a mode:" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="15" FontFamily="Consolas"/>
-        <Button Name="dictionaryButton" Content="Dictionary mode" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Consolas" Padding="10, 5" MinWidth="250"/>
-        <Button Name="administratorButton" Content="Administrator mode" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Consolas" Padding="10, 5" MinWidth="250"/>
-        <Button Name="gameButton"  Content="Game mode" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Consolas" Padding="10, 5" MinWidth="250"/>
-        
+        Title="MainWindow"
+        Width="{Binding ElementName=MainFrame, Path=Width}"
+        Height="{Binding ElementName=MainFrame, Path=Height}">
+    <Grid>
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>
