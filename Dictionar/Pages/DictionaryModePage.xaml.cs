@@ -41,10 +41,19 @@ namespace Dictionar
 				if (dictionaryEntry != null)
 				{
 					definitionAnswerLabel.Content = dictionaryEntry.Definition;
+					try
+					{
+						imageImage.Source = Utils.GetImageFromBase64(dictionaryEntry.Image);
+					}
+					catch (Exception)
+					{
+						imageImage.Source = null;
+					}
 				}
 				else
 				{
 					definitionAnswerLabel.Content = "There is no such word in the dictionary";
+					imageImage.Source = null;
 				}
 			}
 		}

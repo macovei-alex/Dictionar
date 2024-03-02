@@ -27,7 +27,8 @@
 
         <TextBox Name="wordTextBox" Grid.Row="0" Grid.Column="1" FontSize="15" FontFamily="Consolas" VerticalAlignment="Center" HorizontalAlignment="Left" PreviewKeyDown="wordTextBox_PreviewKeyDown" Width="250"/>
         <Label Name="definitionAnswerLabel" Content="" Grid.Column="1" Grid.Row="1" FontSize="15" FontFamily="Consolas" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-
+        <Image Name="imageImage" Grid.Row="2" Grid.Column="1" Width="400" HorizontalAlignment="Left"></Image>
+        
         <Button Name="mainPageButton" Content="Go back" Grid.Row="3" Click="mainPageButton_Click"/>
     </Grid>
 </Page>
