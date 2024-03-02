@@ -8,7 +8,8 @@ using Newtonsoft.Json;
 
 namespace Dictionar.DataHandling
 {
-	internal class FileSystemDataSource : IDataSource<FileEntry>
+	internal class FileSystemDataSource<T> : IDataSource<FileEntry>
+		where T : FileEntry
 	{
 		public string DirectoryPath { get; set; }
 
@@ -20,6 +21,7 @@ namespace Dictionar.DataHandling
 		public void CreateEntry(FileEntry entry)
 		{
 			var path = Path.Combine(DirectoryPath, entry.CollectionKey, entry.FileName);
+
 			if (File.Exists(path))
 			{
 				throw new Exception("File already exists");
@@ -33,21 +35,17 @@ namespace Dictionar.DataHandling
 			fileStream.Close();
 		}
 
-		public T ReadEntry<T>(FileEntry entry)
+		public FileEntry ReadEntry(FileEntry entry)
 		{
 			var path = Path.Combine(DirectoryPath, entry.CollectionKey, entry.FileName);
 			var ret = JsonConvert.DeserializeObject<T>(File.ReadAllText(path));
+
 			if (ret == null)
 			{
 				throw new Exception("Bad entry format");
 			}
 
 			return ret;
-		}
-
-		public FileEntry ReadEntry(FileEntry entry)
-		{
-			return ReadEntry<FileEntry>(entry);
 		}
 
 		public void UpdateEntry(FileEntry entry)

@@ -8,9 +8,9 @@ namespace Dictionar.DataHandling
 {
 	internal class Dictionary
 	{
-		private IDataSource<FileEntry> DataSource { get; set; }
+		private IDataSource<DictionaryEntry> DataSource { get; set; }
 
-		public Dictionary(IDataSource<FileEntry> dataSource)
+		public Dictionary(IDataSource<DictionaryEntry> dataSource)
 		{
 			DataSource = dataSource;
 		}
@@ -20,16 +20,27 @@ namespace Dictionar.DataHandling
 			DataSource.CreateEntry(entry);
 		}
 
-		public DictionaryEntry ReadEntry(DictionaryEntry entry)
-		{
-			return DataSource.ReadEntry(entry) as DictionaryEntry;
-		}
-
-		public DictionaryEntry CreateEntryOrNull(DictionaryEntry entry)
+		public void CreateEntryNoThrow(DictionaryEntry entry)
 		{
 			try
 			{
-				return DataSource.ReadEntry(entry) as DictionaryEntry;
+				DataSource.CreateEntry(entry);
+			}
+			catch (Exception)
+			{
+			}
+		}
+
+		public DictionaryEntry ReadEntry(DictionaryEntry entry)
+		{
+			return DataSource.ReadEntry(entry);
+		}
+
+		public DictionaryEntry ReadEntryOrNull(DictionaryEntry entry)
+		{
+			try
+			{
+				return DataSource.ReadEntry(entry);
 			}
 			catch (Exception)
 			{

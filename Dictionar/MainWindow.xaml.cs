@@ -25,11 +25,11 @@ namespace Dictionar
 		{
 			InitializeComponent();
 
-			Dictionary dictionary = new Dictionary(new FileSystemDataSource(Properties.Settings.Default.WordsDirectory));
+			Dictionary dictionary = new Dictionary(new FileSystemDataSource<DictionaryEntry>(Properties.Settings.Default.WordsDirectory));
 
-			dictionary.CreateEntryOrNull(new DictionaryEntry("Apple", "Red tasty fruit", "[insert image here]"));
-			dictionary.CreateEntryOrNull(new DictionaryEntry("Bomb", "Explosive device", "[insert image here]"));
-			dictionary.CreateEntryOrNull(new DictionaryEntry("Carrot", "Orange", "[insert image here]"));
+			dictionary.ReadEntryOrNull(new DictionaryEntry("Apple", "Red tasty fruit", "[insert image here]"));
+			dictionary.ReadEntryOrNull(new DictionaryEntry("Bomb", "Explosive device", "[insert image here]"));
+			dictionary.ReadEntryOrNull(new DictionaryEntry("Carrot", "Orange", "[insert image here]"));
 
 			Console.WriteLine(dictionary.ReadEntry(new DictionaryEntry("Apple")) as DictionaryEntry);
 			Console.WriteLine(dictionary.ReadEntry(new DictionaryEntry("Bomb")) as DictionaryEntry);
