@@ -29,7 +29,7 @@ namespace Dictionar
 		{
 			if (Window.GetWindow(this) is MainWindow window)
 			{
-				window.NavigateToPage(Utils.GetPage(Utils.PageName.MainPage));
+				window.NavigateToPage(Utils.GetPageName(Utils.Pages.MainPage));
 			}
 		}
 	}

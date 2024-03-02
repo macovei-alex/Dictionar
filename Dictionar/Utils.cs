@@ -9,21 +9,21 @@ namespace Dictionar
 {
 	internal class Utils
 	{
-		public enum PageName
+		public enum Pages
 		{
 			Invalid,
 			MainPage,
 			DictionaryModePage
 		};
 
-		public static readonly Dictionary<PageName, string> pageMap = new Dictionary<PageName, string>
+		public static readonly Dictionary<Pages, string> pageMap = new Dictionary<Pages, string>
 		{
-			{ PageName.Invalid, "Invalid" },
-			{ PageName.MainPage, "MainPage" },
-			{ PageName.DictionaryModePage, "DictionaryModePage" }
+			{ Pages.Invalid, "Invalid" },
+			{ Pages.MainPage, "MainPage" },
+			{ Pages.DictionaryModePage, "DictionaryModePage" }
 		};
 
-		public static string GetPage(PageName pageName)
+		public static string GetPageName(Pages pageName)
 		{
 			return pageMap[pageName];
 		}
