@@ -21,17 +21,15 @@ namespace Dictionar
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+		internal Dictionary Dictionary { get; private set; }
+
 		public MainWindow()
 		{
 			InitializeComponent();
 			MainFrame.Navigate(new Uri("Pages\\DictionaryModePage.xaml", UriKind.Relative));
 			SizeToContent = SizeToContent.WidthAndHeight;
 
-			/*Dictionary dictionary = new Dictionary(new FileSystemDataSource<DictionaryEntry>(Properties.Settings.Default.WordsDirectory));
-
-			dictionary.UpdateEntry(new DictionaryEntry("Apple", "Red fruit", "[insert image here]"));
-			dictionary.UpdateEntry(new DictionaryEntry("Carrot", "Orange vegetable", "[insert image here]"));
-			dictionary.UpdateEntry(new DictionaryEntry("Bomb", "Explosive device", "[insert image here]"));*/
+			Dictionary = new Dictionary(new FileSystemDataSource<DictionaryEntry>(Properties.Settings.Default.WordsDirectory));
 		}
 
 		public void NavigateToPage(string pageName)

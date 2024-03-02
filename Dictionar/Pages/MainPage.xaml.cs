@@ -20,6 +20,8 @@ namespace Dictionar.Pages
 	/// </summary>
 	public partial class MainPage : Page
 	{
+		private MainWindow ParentWindow => Window.GetWindow(this) as MainWindow;
+
 		public MainPage()
 		{
 			InitializeComponent();
@@ -27,10 +29,7 @@ namespace Dictionar.Pages
 
 		private void dictionaryButton_Click(object sender, RoutedEventArgs e)
 		{
-			if (Window.GetWindow(this) is MainWindow window)
-			{
-				window.NavigateToPage(Utils.GetPageName(Utils.Pages.DictionaryModePage));
-			}
+			ParentWindow.NavigateToPage(Utils.GetPageName(Utils.Pages.DictionaryModePage));
 		}
 	}
 }

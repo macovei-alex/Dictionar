@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,8 @@ namespace Dictionar
 	/// </summary>
 	public partial class DictionaryModePage : Page
 	{
+		private MainWindow ParentWindow => Window.GetWindow(this) as MainWindow;
+
 		public DictionaryModePage()
 		{
 			InitializeComponent();
@@ -27,10 +30,7 @@ namespace Dictionar
 
 		private void Button_Click(object sender, RoutedEventArgs e)
 		{
-			if (Window.GetWindow(this) is MainWindow window)
-			{
-				window.NavigateToPage(Utils.GetPageName(Utils.Pages.MainPage));
-			}
+			ParentWindow.NavigateToPage(Utils.GetPageName(Utils.Pages.MainPage));
 		}
 	}
 }
