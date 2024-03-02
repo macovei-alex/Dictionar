@@ -21,7 +21,7 @@ namespace Dictionar
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		internal Dictionary Dictionary { get; private set; }
+		public Dictionary Dictionary { get; private set; }
 
 		public MainWindow()
 		{
@@ -40,6 +40,11 @@ namespace Dictionar
 		public void SwapPage(string pageName)
 		{
 			MainFrame.Navigate(new Uri($"Pages\\{pageName}.xaml", UriKind.Relative));
+		}
+
+		public DictionaryEntry Search(string word)
+		{
+			return Dictionary.ReadEntryOrNull(word);
 		}
 	}
 }

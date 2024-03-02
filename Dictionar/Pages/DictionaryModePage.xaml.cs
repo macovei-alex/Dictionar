@@ -32,5 +32,21 @@ namespace Dictionar
 		{
 			ParentWindow.SwapPage(Utils.Pages.MainPage);
 		}
+
+		private void wordTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Enter)
+			{
+				var dictionaryEntry = ParentWindow.Search(wordTextBox.Text.Trim());
+				if (dictionaryEntry != null)
+				{
+					definitionAnswerLabel.Content = dictionaryEntry.Definition;
+				}
+				else
+				{
+					definitionAnswerLabel.Content = "There is no such word in the dictionary";
+				}
+			}
+		}
 	}
 }

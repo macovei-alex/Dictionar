@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 namespace Dictionar.DataHandling
 {
-	internal class FileSystemDataSource<T> : IDataSource<T> where T : FileEntry
+	public class FileSystemDataSource<T> : IDataSource<T> where T : FileEntry
 	{
 		public string DirectoryPath { get; set; }
 

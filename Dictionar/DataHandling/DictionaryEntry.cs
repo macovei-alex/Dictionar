@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Dictionar.DataHandling
 {
-	internal class DictionaryEntry : FileEntry
+	public class DictionaryEntry : FileEntry
 	{
 		public override string Key
 		{

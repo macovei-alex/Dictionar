@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dictionar
 {
-	internal interface IDataSource<T> where T : IEntry
+	public interface IDataSource<T> where T : IEntry
 	{
 		void CreateEntry(T entry);
 

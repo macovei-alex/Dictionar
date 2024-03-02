@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Dictionar.DataHandling
 {
-	internal abstract class FileEntry : IEntry
+	public abstract class FileEntry : IEntry
 	{
 		[JsonIgnore]
 		public abstract string Key { get; }

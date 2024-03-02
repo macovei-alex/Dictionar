@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Dictionar
 {
-	internal interface IEntry
+	public interface IEntry
 	{
 		string Key { get; }
 		string CollectionKey { get; }

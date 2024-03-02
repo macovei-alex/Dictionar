@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dictionar.DataHandling
 {
-	internal class Dictionary
+	public class Dictionary
 	{
 		private IDataSource<DictionaryEntry> DataSource { get; set; }
 

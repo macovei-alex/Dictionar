@@ -5,6 +5,7 @@ using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Documents;
+using Dictionar.DataHandling;
 
 namespace Dictionar
 {
