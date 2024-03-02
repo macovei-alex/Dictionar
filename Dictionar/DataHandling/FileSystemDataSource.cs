@@ -26,9 +26,8 @@ namespace Dictionar.DataHandling
 				throw new Exception("File already exists");
 			}
 
-			byte[] entryBytes = Encoding.UTF8.GetBytes(entry.Serialize());
-
 			FileStream fileStream = File.Create(path);
+			byte[] entryBytes = entry.GetBytes();
 
 			fileStream.Write(entryBytes, 0, entryBytes.Length);
 			fileStream.Close();

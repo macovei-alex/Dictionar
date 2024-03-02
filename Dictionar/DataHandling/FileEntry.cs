@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -30,7 +31,7 @@ namespace Dictionar.DataHandling
 		}
 
 		public abstract string Serialize();
-
+		public abstract byte[] GetBytes();
 		public static FileEntry Deserialize(string data)
 		{
 			throw new NotImplementedException();

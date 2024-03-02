@@ -56,7 +56,7 @@ namespace Dictionar.DataHandling
 			return JsonConvert.SerializeObject(this);
 		}
 
-		public byte[] ToBytes()
+		public override byte[] GetBytes()
 		{
 			return Encoding.UTF8.GetBytes(Serialize());
 		}
