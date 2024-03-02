@@ -6,9 +6,28 @@
       xmlns:local="clr-namespace:Dictionar"
       mc:Ignorable="d"
       Title="DictionaryModePage"
-      Width="200" Height="300">
+      Width="800" Height="450">
 
     <Grid Background="White">
-        <Button Name="mainPageButton" Content="To the main page" Click="mainPageButton_Click" FontSize="12" FontFamily="Consolas"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Name="wordLabel" Grid.Row="0" Content="Your word:" FontSize="15" FontFamily="Consolas" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+        <Label Name="definitionLabel" Grid.Row="1" Content="Definition: " FontSize="15" FontFamily="Consolas" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+        <Label Name="imageLabel" Grid.Row="2" Content="Image: " FontSize="15" FontFamily="Consolas" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+
+        <TextBox Name="wordTextBox" Text="wordTextBox" Grid.Row="0" Grid.Column="1" FontSize="15" FontFamily="Consolas" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+        <Label Name="definitionAnswerLabel" Content="definitionAnswerLabel" Grid.Column="1" Grid.Row="1" FontSize="15" FontFamily="Consolas" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+
+        <Button Name="mainPageButton" Content="Go back" Grid.Row="3" Click="mainPageButton_Click"/>
     </Grid>
 </Page>

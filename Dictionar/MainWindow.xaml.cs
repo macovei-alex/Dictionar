@@ -26,7 +26,7 @@ namespace Dictionar
 		public MainWindow()
 		{
 			InitializeComponent();
-			MainFrame.Navigate(Utils.GetPageName(Utils.Pages.MainPage));
+			SwapPage(Utils.Pages.MainPage);
 			SizeToContent = SizeToContent.WidthAndHeight;
 
 			Dictionary = new Dictionary(new FileSystemDataSource<DictionaryEntry>(Properties.Settings.Default.WordsDirectory));
@@ -34,7 +34,7 @@ namespace Dictionar
 
 		internal void SwapPage(Utils.Pages page)
 		{
-			MainFrame.Navigate(Utils.GetPageName(page));
+			SwapPage(Utils.GetPageName(page));
 		}
 
 		public void SwapPage(string pageName)

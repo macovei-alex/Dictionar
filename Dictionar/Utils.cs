@@ -23,7 +23,7 @@ namespace Dictionar
 			{ Pages.DictionaryModePage, "DictionaryModePage" }
 		};
 
-		public static void GetPageName(Pages page)
+		public static string GetPageName(Pages page)
 		{
 			return pageMap[page];
 		}
