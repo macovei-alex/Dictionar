@@ -4,12 +4,11 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Dictionar"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="400"
-      Width="600" Height="450"
-      Title="DictionaryModePage">
+      mc:Ignorable="d"
+      Title="DictionaryModePage"
+      Width="200" Height="300">
 
-    <Grid>
-        <Button Content="LALALALALA" Click="Button_Click"/>
+    <Grid Background="White">
+        <Button Name="mainPageButton" Content="To the main page" Click="mainPageButton_Click" FontSize="12" FontFamily="Consolas"/>
     </Grid>
 </Page>

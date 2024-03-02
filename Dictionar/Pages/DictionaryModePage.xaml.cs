@@ -28,9 +28,9 @@ namespace Dictionar
 			InitializeComponent();
 		}
 
-		private void Button_Click(object sender, RoutedEventArgs e)
+		private void mainPageButton_Click(object sender, RoutedEventArgs e)
 		{
-			ParentWindow.NavigateToPage(Utils.GetPageName(Utils.Pages.MainPage));
+			ParentWindow.SwapPage(Utils.Pages.MainPage);
 		}
 	}
 }

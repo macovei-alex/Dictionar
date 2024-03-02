@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 
 namespace Dictionar
 {
@@ -18,14 +19,13 @@ namespace Dictionar
 
 		public static readonly Dictionary<Pages, string> pageMap = new Dictionary<Pages, string>
 		{
-			{ Pages.Invalid, "Invalid" },
 			{ Pages.MainPage, "MainPage" },
 			{ Pages.DictionaryModePage, "DictionaryModePage" }
 		};
 
-		public static string GetPageName(Pages pageName)
+		public static void GetPageName(Pages page)
 		{
-			return pageMap[pageName];
+			return pageMap[page];
 		}
 	}
 }

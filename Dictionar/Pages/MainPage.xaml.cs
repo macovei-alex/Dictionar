@@ -29,7 +29,7 @@ namespace Dictionar.Pages
 
 		private void dictionaryButton_Click(object sender, RoutedEventArgs e)
 		{
-			ParentWindow.NavigateToPage(Utils.GetPageName(Utils.Pages.DictionaryModePage));
+			ParentWindow.SwapPage(Utils.Pages.DictionaryModePage);
 		}
 	}
 }

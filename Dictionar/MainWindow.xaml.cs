@@ -26,13 +26,18 @@ namespace Dictionar
 		public MainWindow()
 		{
 			InitializeComponent();
-			MainFrame.Navigate(new Uri("Pages\\DictionaryModePage.xaml", UriKind.Relative));
+			MainFrame.Navigate(Utils.GetPageName(Utils.Pages.MainPage));
 			SizeToContent = SizeToContent.WidthAndHeight;
 
 			Dictionary = new Dictionary(new FileSystemDataSource<DictionaryEntry>(Properties.Settings.Default.WordsDirectory));
 		}
 
-		public void NavigateToPage(string pageName)
+		internal void SwapPage(Utils.Pages page)
+		{
+			MainFrame.Navigate(Utils.GetPageName(page));
+		}
+
+		public void SwapPage(string pageName)
 		{
 			MainFrame.Navigate(new Uri($"Pages\\{pageName}.xaml", UriKind.Relative));
 		}
