@@ -9,11 +9,7 @@ namespace Dictionar.DataHandling
 {
 	internal class DictionaryEntry : FileEntry
 	{
-		public string Word { get; set; }
-		public string Description { get; set; }
-		public string Image { get; set; }
-
-		public override string Name
+		public override string Key
 		{
 			get
 			{
@@ -21,13 +17,17 @@ namespace Dictionar.DataHandling
 			}
 		}
 
-		public override string FileName
+		public override string FileExtension
 		{
 			get
 			{
-				return $"{Name}.json";
+				return "json";
 			}
 		}
+
+		public string Word { get; set; }
+		public string Description { get; set; }
+		public string Image { get; set; }
 
 		[JsonConstructor]
 		public DictionaryEntry(string word, string description, string image)
@@ -37,7 +37,7 @@ namespace Dictionar.DataHandling
 			Image = image;
 		}
 
-		public DictionaryEntry(IEntry entry)
+		public DictionaryEntry(FileEntry entry)
 		{
 			Word = entry.Key;
 			Description = string.Empty;

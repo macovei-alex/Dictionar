@@ -36,11 +36,28 @@ namespace Dictionar.DataHandling
 			return DataSource.ReadEntry(entry);
 		}
 
+		public DictionaryEntry ReadEntry(string word)
+		{
+			return DataSource.ReadEntry(word);
+		}
+
 		public DictionaryEntry ReadEntryOrNull(DictionaryEntry entry)
 		{
 			try
 			{
 				return DataSource.ReadEntry(entry);
+			}
+			catch (Exception)
+			{
+				return null;
+			}
+		}
+
+		public DictionaryEntry ReadEntryOrNull(string word)
+		{
+			try
+			{
+				return DataSource.ReadEntry(word);
 			}
 			catch (Exception)
 			{

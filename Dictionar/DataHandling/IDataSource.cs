@@ -11,6 +11,7 @@ namespace Dictionar
 		void CreateEntry(T entry);
 
 		T ReadEntry(T entry);
+		T ReadEntry(string name);
 
 		void UpdateEntry(T entry);
 

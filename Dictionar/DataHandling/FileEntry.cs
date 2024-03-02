@@ -10,31 +10,27 @@ namespace Dictionar.DataHandling
 {
 	internal abstract class FileEntry : IEntry
 	{
-		public abstract string Name { get; }
-
-		public abstract string FileName { get; }
+		public abstract string Key { get; }
 
 		public string CollectionKey
 		{
 			get
 			{
-				return Name[0].ToString().ToLower();
+				return Key[0].ToString().ToLower();
 			}
 		}
 
-		public string Key
+		public abstract string FileExtension { get; }
+
+		public string FileName
 		{
 			get
 			{
-				return Name;
+				return $"{Key}.{FileExtension}";
 			}
 		}
 
 		public abstract string Serialize();
 		public abstract byte[] GetBytes();
-		public static FileEntry Deserialize(string data)
-		{
-			throw new NotImplementedException();
-		}
 	}
 }

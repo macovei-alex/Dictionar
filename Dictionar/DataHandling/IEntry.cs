@@ -9,7 +9,7 @@ namespace Dictionar
 {
 	internal interface IEntry
 	{
-		string CollectionKey { get; }
 		string Key { get; }
+		string CollectionKey { get; }
 	}
 }
