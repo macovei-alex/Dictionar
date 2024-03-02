@@ -38,11 +38,6 @@ namespace Dictionar.DataHandling
 			return DataSource.ReadEntry(entry);
 		}
 
-		public DictionaryEntry ReadEntry(string word)
-		{
-			return DataSource.ReadEntry(word);
-		}
-
 		public DictionaryEntry ReadEntryOrNull(DictionaryEntry entry)
 		{
 			try
@@ -53,6 +48,11 @@ namespace Dictionar.DataHandling
 			{
 				return null;
 			}
+		}
+
+		public DictionaryEntry ReadEntry(string word)
+		{
+			return DataSource.ReadEntry(word);
 		}
 
 		public DictionaryEntry ReadEntryOrNull(string word)
@@ -95,6 +95,24 @@ namespace Dictionar.DataHandling
 			try
 			{
 				DataSource.DeleteEntry(entry);
+				return true;
+			}
+			catch (Exception)
+			{
+				return false;
+			}
+		}
+
+		public void DeleteEntry(string word)
+		{
+			DataSource.DeleteEntry(word);
+		}
+
+		public bool DeleteEntryNoThrow(string word)
+		{
+			try
+			{
+				DataSource.DeleteEntry(word);
 				return true;
 			}
 			catch (Exception)
