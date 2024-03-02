@@ -26,28 +26,28 @@ namespace Dictionar.DataHandling
 		}
 
 		public string Word { get; set; }
-		public string Description { get; set; }
+		public string Definition { get; set; }
 		public string Image { get; set; }
 
 		[JsonConstructor]
 		public DictionaryEntry(string word, string description, string image)
 		{
 			Word = word;
-			Description = description;
+			Definition = description;
 			Image = image;
 		}
 
 		public DictionaryEntry(FileEntry entry)
 		{
 			Word = entry.Key;
-			Description = string.Empty;
+			Definition = string.Empty;
 			Image = string.Empty;
 		}
 
 		public DictionaryEntry(string word)
 		{
 			Word = word;
-			Description = string.Empty;
+			Definition = string.Empty;
 			Image = string.Empty;
 		}
 
@@ -63,7 +63,7 @@ namespace Dictionar.DataHandling
 
 		public override string ToString()
 		{
-			return $"Word: {Word}, Description: {Description}, Image: {Image}";
+			return $"Word: {Word}, Description: {Definition}, Image: {Image}";
 		}
 	}
 }

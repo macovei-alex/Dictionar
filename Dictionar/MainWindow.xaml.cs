@@ -27,13 +27,9 @@ namespace Dictionar
 
 			Dictionary dictionary = new Dictionary(new FileSystemDataSource<DictionaryEntry>(Properties.Settings.Default.WordsDirectory));
 
-			/*dictionary.CreateEntryNoThrow(new DictionaryEntry("Apple", "Red tasty fruit", "[insert image here]"));
-			dictionary.CreateEntryNoThrow(new DictionaryEntry("Bomb", "Explosive device", "[insert image here]"));
-			dictionary.CreateEntryNoThrow(new DictionaryEntry("Carrot", "Orange", "[insert image here]"));*/
-
-			Console.WriteLine(dictionary.ReadEntryOrNull("Apple"));
-			Console.WriteLine(dictionary.ReadEntryOrNull("Bomb"));
-			Console.WriteLine(dictionary.ReadEntryOrNull(new DictionaryEntry("Carrot")));
+			dictionary.UpdateEntry(new DictionaryEntry("Apple", "Red fruit", "[insert image here]"));
+			dictionary.UpdateEntry(new DictionaryEntry("Carrot", "Orange vegetable", "[insert image here]"));
+			dictionary.UpdateEntry(new DictionaryEntry("Bomb", "Explosive device", "[insert image here]"));
 		}
 	}
 }

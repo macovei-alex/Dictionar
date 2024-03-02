@@ -10,8 +10,10 @@ namespace Dictionar.DataHandling
 {
 	internal abstract class FileEntry : IEntry
 	{
+		[JsonIgnore]
 		public abstract string Key { get; }
 
+		[JsonIgnore]
 		public string CollectionKey
 		{
 			get
@@ -20,8 +22,10 @@ namespace Dictionar.DataHandling
 			}
 		}
 
+		[JsonIgnore]
 		public abstract string FileExtension { get; }
 
+		[JsonIgnore]
 		public string FileName
 		{
 			get

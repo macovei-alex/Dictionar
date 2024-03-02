@@ -11,10 +11,11 @@ namespace Dictionar
 		void CreateEntry(T entry);
 
 		T ReadEntry(T entry);
-		T ReadEntry(string name);
+		T ReadEntry(string key);
 
 		void UpdateEntry(T entry);
 
 		void DeleteEntry(T entry);
+		void DeleteEntry(string key);
 	}
 }

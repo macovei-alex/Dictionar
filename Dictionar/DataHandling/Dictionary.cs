@@ -20,14 +20,16 @@ namespace Dictionar.DataHandling
 			DataSource.CreateEntry(entry);
 		}
 
-		public void CreateEntryNoThrow(DictionaryEntry entry)
+		public bool CreateEntryNoThrow(DictionaryEntry entry)
 		{
 			try
 			{
 				DataSource.CreateEntry(entry);
+				return true;
 			}
 			catch (Exception)
 			{
+				return false;
 			}
 		}
 
@@ -62,6 +64,42 @@ namespace Dictionar.DataHandling
 			catch (Exception)
 			{
 				return null;
+			}
+		}
+
+		public void UpdateEntry(DictionaryEntry entry)
+		{
+			DataSource.UpdateEntry(entry);
+		}
+
+		public bool UpdateEntryNoThrow(DictionaryEntry entry)
+		{
+			try
+			{
+				DataSource.UpdateEntry(entry);
+				return true;
+			}
+			catch (Exception)
+			{
+				return false;
+			}
+		}
+
+		public void DeleteEntry(DictionaryEntry entry)
+		{
+			DataSource.DeleteEntry(entry);
+		}
+
+		public bool DeleteEntryNoThrow(DictionaryEntry entry)
+		{
+			try
+			{
+				DataSource.DeleteEntry(entry);
+				return true;
+			}
+			catch (Exception)
+			{
+				return false;
 			}
 		}
 	}

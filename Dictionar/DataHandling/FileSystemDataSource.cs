@@ -42,20 +42,20 @@ namespace Dictionar.DataHandling
 
 		public T ReadEntry(T entry)
 		{
-			var path = Path.Combine(DirectoryPath, entry.CollectionKey, entry.FileName);
-
-			if (File.Exists(path) == false)
-			{
-				throw new Exception("File does not exist");
-			}
-
 			try
 			{
+				string path = Path.Combine(DirectoryPath, entry.CollectionKey, entry.FileName);
+				if (File.Exists(path) == false)
+				{
+					throw new Exception($"File {path} does not exist");
+				}
+
 				var ret = JsonConvert.DeserializeObject<T>(File.ReadAllText(path));
 				if (ret == null)
 				{
 					throw new Exception("Bad entry format");
 				}
+
 				return ret;
 			}
 			catch (Exception exception)
@@ -66,27 +66,63 @@ namespace Dictionar.DataHandling
 
 		public T ReadEntry(string key)
 		{
-			FileEntry entry = (FileEntry)Activator.CreateInstance(typeof(T), key);
-
-			var path = Path.Combine(DirectoryPath, entry.CollectionKey, entry.FileName);
-			var ret = JsonConvert.DeserializeObject<T>(File.ReadAllText(path));
-
-			if (ret == null)
+			try
 			{
-				throw new Exception("Bad entry format");
+				return ReadEntry(Activator.CreateInstance(typeof(T), key) as T);
 			}
-
-			return ret;
+			catch (Exception exception)
+			{
+				throw exception;
+			}
 		}
 
 		public void UpdateEntry(T entry)
 		{
-			throw new NotImplementedException();
+			try
+			{
+				var path = Path.Combine(DirectoryPath, entry.CollectionKey, entry.FileName);
+				if (File.Exists(path) == false)
+				{
+					throw new Exception($"File {path} does not exist");
+				}
+
+				File.Delete(path);
+				CreateEntry(entry);
+			}
+			catch (Exception exception)
+			{
+				throw exception;
+			}
 		}
 
 		public void DeleteEntry(T entry)
 		{
-			throw new NotImplementedException();
+			try
+			{
+				var path = Path.Combine(DirectoryPath, entry.CollectionKey, entry.FileName);
+				if (File.Exists(path) == false)
+				{
+					throw new Exception($"File {path} does not exist");
+				}
+
+				File.Delete(path);
+			}
+			catch (Exception exception)
+			{
+				throw exception;
+			}
+		}
+
+		public void DeleteEntry(string key)
+		{
+			try
+			{
+				DeleteEntry(Activator.CreateInstance(typeof(T), key) as T);
+			}
+			catch (Exception exception)
+			{
+				throw exception;
+			}
 		}
 	}
 }
