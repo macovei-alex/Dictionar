@@ -41,18 +41,19 @@ namespace Dictionar
 				if (dictionaryEntry != null)
 				{
 					definitionAnswerLabel.Content = dictionaryEntry.Definition;
+
 					try
 					{
 						imageImage.Source = Utils.GetImageFromBase64(dictionaryEntry.Image);
 					}
 					catch (Exception)
 					{
-						imageImage.Source = null;
+						imageImage.Source = new BitmapImage(new Uri(Properties.Settings.Default.DefaultImage));
 					}
 				}
 				else
 				{
-					definitionAnswerLabel.Content = "There is no such word in the dictionary";
+					definitionAnswerLabel.Content = $"There word \"{wordTextBox.Text.Trim()}\" could not be found in the dictionary";
 					imageImage.Source = null;
 				}
 			}

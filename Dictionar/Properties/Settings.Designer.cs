@@ -32,5 +32,15 @@ namespace Dictionar.Properties {
                 return ((string)(this["WordsDirectory"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Mac\\Facultate\\Anul_2\\MAP\\tema1 - Dictionar\\Dictionar\\Dictionar\\Resources\\Defau" +
+            "ltImage.png")]
+        public string DefaultImage {
+            get {
+                return ((string)(this["DefaultImage"]));
+            }
+        }
     }
 }

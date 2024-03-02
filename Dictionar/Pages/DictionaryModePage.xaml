@@ -26,9 +26,11 @@
         <Label Name="imageLabel" Grid.Row="2" Content="Image: " FontSize="15" FontFamily="Consolas" VerticalAlignment="Top" HorizontalAlignment="Left"/>
 
         <TextBox Name="wordTextBox" Grid.Row="0" Grid.Column="1" FontSize="15" FontFamily="Consolas" VerticalAlignment="Center" HorizontalAlignment="Left" PreviewKeyDown="wordTextBox_PreviewKeyDown" Width="250"/>
-        <Label Name="definitionAnswerLabel" Content="" Grid.Column="1" Grid.Row="1" FontSize="15" FontFamily="Consolas" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+        <Border Name="definitionAnswerBorder" BorderThickness="2" BorderBrush="Black" Grid.Column="1" Grid.Row="1">
+            <Label Name="definitionAnswerLabel" Content="" Grid.Column="1" Grid.Row="1" FontSize="15" FontFamily="Consolas" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        </Border>
         <Image Name="imageImage" Grid.Row="2" Grid.Column="1" Width="400" HorizontalAlignment="Left"></Image>
-        
-        <Button Name="mainPageButton" Content="Go back" Grid.Row="3" Click="mainPageButton_Click"/>
+
+        <Button Name="mainPageButton" Content="Go back" Grid.Row="3" Click="mainPageButton_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5, 5"/>
     </Grid>
 </Page>
