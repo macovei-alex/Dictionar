@@ -23,16 +23,38 @@ namespace Dictionar
 			AdministratorPage
 		};
 
-		public static readonly Dictionary<Pages, string> pageMap = new Dictionary<Pages, string>
+		public enum Windows
+		{
+			Invalid,
+			MainWindow,
+			TextInputWindow
+		}
+
+		public static Uri DefaultImageUri => new Uri(Path.GetFullPath(Properties.Settings.Default.DefaultImage));
+
+		public static string FullWordsDirectory => Path.GetFullPath(Properties.Settings.Default.WordsDirectory);
+
+		public static Dictionary<Pages, string> PageMap { get; } = new Dictionary<Pages, string>
 		{
 			{ Pages.MainPage, "MainPage" },
 			{ Pages.DictionaryModePage, "DictionaryModePage" },
 			{ Pages.AdministratorPage, "AdministratorPage" }
 		};
 
+		public static Dictionary<Windows, string> WindowMap { get; } = new Dictionary<Windows, string>
+		{
+			{ Windows.MainWindow, "MainWindow" },
+			{ Windows.TextInputWindow, "TextInputWindow" },
+		};
+
 		public static string GetPageName(Pages page)
 		{
-			return pageMap[page];
+			return PageMap[page];
+		}
+
+		public static string GetWindow(Windows window)
+		{
+			return WindowMap[window];
 		}
 
 		public static BitmapImage GetImageFromBase64(string base64String)
@@ -71,9 +93,5 @@ namespace Dictionar
 				return Convert.ToBase64String(ms.ToArray());
 			}
 		}
-
-		public static Uri DefaultImageUri => new Uri(Path.GetFullPath(Properties.Settings.Default.DefaultImage));
-
-		public static string FullWordsDirectory => Path.GetFullPath(Properties.Settings.Default.WordsDirectory);
 	}
 }

@@ -52,10 +52,14 @@ namespace Dictionar.Pages
 						if (CurrentEntry.Image == DictionaryEntry.DefaultImageString
 							|| CurrentEntry.Image == string.Empty)
 						{
-							CurrentEntry.Image = Utils.GetBase64FromImage(new BitmapImage(Utils.DefaultImageUri));
+							var bitmapImage = new BitmapImage(Utils.DefaultImageUri);
+							imageImage.Source = bitmapImage;
+							CurrentEntry.Image = Utils.GetBase64FromImage(bitmapImage);
 						}
-
-						imageImage.Source = Utils.GetImageFromBase64(CurrentEntry.Image);
+						else
+						{
+							imageImage.Source = Utils.GetImageFromBase64(CurrentEntry.Image);
+						}
 					}
 					catch (Exception)
 					{
@@ -74,21 +78,6 @@ namespace Dictionar.Pages
 				}
 			}
 		}
-
-		/*private void changeDefinitionButton_Click(object sender, RoutedEventArgs e)
-		{
-			if (CurrentEntry == null)
-			{
-				MessageBox.Show("The word does not exist in the dictionary", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-				return;
-			}
-
-			var textInputWindow = new TextInputWindow("Insert the new definition here");
-			textInputWindow.Closing += this.TextInputWindowClosing;
-
-			textInputWindow.Show();
-			IsTextInputWindowOpen = true;
-		}*/
 
 		private void changeImageButton_Click(object sender, RoutedEventArgs e)
 		{
@@ -126,18 +115,6 @@ namespace Dictionar.Pages
 			{
 				CurrentEntry.Definition = definitionAnswerTextBox.Text.Trim();
 				Dictionary.UpdateEntry(CurrentEntry);
-			}
-		}
-
-		public void TextInputWindowClosing(object sender, EventArgs e)
-		{
-			var inputWindow = sender as TextInputWindow;
-
-			if (inputWindow.buttonClicked == TextInputWindow.Button.Accept)
-			{
-				CurrentEntry.Definition = inputWindow.answerTextBox.Text.Trim();
-				ParentWindow.Dictionary.UpdateEntry(CurrentEntry);
-				definitionAnswerTextBox.Text = CurrentEntry.Definition;
 			}
 		}
 	}
