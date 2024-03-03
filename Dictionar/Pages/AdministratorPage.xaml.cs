@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Dictionar.DataHandling;
+using System.IO;
 
 namespace Dictionar.Pages
 {
@@ -52,7 +55,7 @@ namespace Dictionar.Pages
 				}
 				else
 				{
-					definitionAnswerLabel.Content = $"There word \"{wordTextBox.Text.Trim()}\" could not be found in the dictionary";
+					definitionAnswerLabel.Content = $"The word \"{wordTextBox.Text.Trim()}\" could not be found in the dictionary";
 					imageImage.Source = null;
 				}
 			}
@@ -65,7 +68,27 @@ namespace Dictionar.Pages
 
 		private void changeImageButton_Click(object sender, RoutedEventArgs e)
 		{
+			if (ParentWindow.Dictionary.ReadEntryOrNull(wordTextBox.Text.Trim()) == null)
+			{
+				MessageBox.Show("The word does not exist in the dictionary", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				return;
+			}
 
+			FileDialog fileDialog = new OpenFileDialog
+			{
+				Filter = "Image files (*.png;*.jpeg;*.jpg)|*.png;*.jpeg;*.jpg",
+				InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures)
+			};
+
+			var result = fileDialog.ShowDialog();
+			if (result == true)
+			{
+				var imageBase64 = Convert.ToBase64String(File.ReadAllBytes(fileDialog.FileName));
+
+				ParentWindow.Dictionary.UpdateEntry(new DictionaryEntry(wordTextBox.Text.Trim(), definitionAnswerLabel.Content.ToString().Trim(), imageBase64));
+
+				imageImage.Source = Utils.GetImageFromBase64(imageBase64);
+			}
 		}
 	}
 }

@@ -53,7 +53,7 @@ namespace Dictionar
 				}
 				else
 				{
-					definitionAnswerLabel.Content = $"There word \"{wordTextBox.Text.Trim()}\" could not be found in the dictionary";
+					definitionAnswerLabel.Content = $"The word \"{wordTextBox.Text.Trim()}\" could not be found in the dictionary";
 					imageImage.Source = null;
 				}
 			}
