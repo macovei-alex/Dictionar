@@ -82,15 +82,27 @@ namespace Dictionar
 
 		public static string GetBase64FromImage(BitmapImage bitmapImage)
 		{
-			if (bitmapImage.StreamSource == null)
+			if (bitmapImage == null)
 			{
-				return null;
+				throw new Exception("Null bitmap parameter.");
 			}
 
-			using (var ms = new MemoryStream())
+			try
 			{
-				bitmapImage.StreamSource.CopyTo(ms);
-				return Convert.ToBase64String(ms.ToArray());
+				var writeableBitmap = new WriteableBitmap(bitmapImage);
+				using (MemoryStream ms = new MemoryStream())
+				{
+					BitmapEncoder encoder = new PngBitmapEncoder();
+					encoder.Frames.Add(BitmapFrame.Create(writeableBitmap));
+					encoder.Save(ms);
+
+					string base64String = Convert.ToBase64String(ms.ToArray());
+					return base64String;
+				}
+			}
+			catch (Exception exception)
+			{
+				throw new Exception("Error converting BitmapImage to Base64 string.", exception);
 			}
 		}
 	}

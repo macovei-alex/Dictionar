@@ -65,9 +65,9 @@ namespace Dictionar.Pages
 					catch (Exception)
 					{
 						var bitmap = new BitmapImage(Utils.DefaultImageUri);
-
 						imageImage.Source = bitmap;
 						CurrentEntry.Image = Utils.GetBase64FromImage(bitmap);
+
 						MessageBox.Show("Failed to load image");
 					}
 				}
@@ -95,7 +95,6 @@ namespace Dictionar.Pages
 					CurrentEntry = new DictionaryEntry(wordTextBox.Text.Trim());
 				}
 
-				var bitmap = new BitmapImage(new Uri(fileDialog.FileName));
 				CurrentEntry.Image = Convert.ToBase64String(File.ReadAllBytes(fileDialog.FileName));
 				imageImage.Source = Utils.GetImageFromBase64(CurrentEntry.Image);
 			}
