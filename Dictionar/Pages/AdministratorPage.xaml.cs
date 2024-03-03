@@ -28,6 +28,9 @@ namespace Dictionar.Pages
 		private Dictionary Dictionary => ParentWindow.Dictionary;
 		private DictionaryEntry CurrentEntry { get; set; }
 
+		private const string tick = "\u2714";
+		private const string x = "\u2716";
+
 		public AdministratorPage()
 		{
 			InitializeComponent();
@@ -47,6 +50,8 @@ namespace Dictionar.Pages
 				{
 					definitionAnswerTextBox.Text = CurrentEntry.Definition;
 
+					Debug(Utils.Debug.Good, "Entry found.");
+
 					try
 					{
 						if (CurrentEntry.Image == null
@@ -56,10 +61,14 @@ namespace Dictionar.Pages
 							var bitmapImage = new BitmapImage(Utils.DefaultImageUri);
 							imageImage.Source = bitmapImage;
 							CurrentEntry.Image = Utils.GetBase64FromImage(bitmapImage);
+
+							Debug(Utils.Debug.Bad, "No image found.", true);
 						}
 						else
 						{
 							imageImage.Source = Utils.GetImageFromBase64(CurrentEntry.Image);
+
+							Debug(Utils.Debug.Good, "Image found.", true);
 						}
 					}
 					catch (Exception)
@@ -68,7 +77,7 @@ namespace Dictionar.Pages
 						imageImage.Source = bitmap;
 						CurrentEntry.Image = Utils.GetBase64FromImage(bitmap);
 
-						MessageBox.Show("Failed to load image");
+						Debug(Utils.Debug.Bad, "Error loading image.", true);
 					}
 				}
 				else
@@ -76,6 +85,8 @@ namespace Dictionar.Pages
 					CurrentEntry = new DictionaryEntry(wordTextBox.Text.Trim());
 					definitionAnswerTextBox.Text = string.Empty;
 					imageImage.Source = null;
+
+					Debug(Utils.Debug.Bad, "Entry not found.");
 				}
 			}
 		}
@@ -97,6 +108,8 @@ namespace Dictionar.Pages
 
 				CurrentEntry.Image = Convert.ToBase64String(File.ReadAllBytes(fileDialog.FileName));
 				imageImage.Source = Utils.GetImageFromBase64(CurrentEntry.Image);
+
+				Debug(Utils.Debug.Good, "Image uploaded.");
 			}
 		}
 
@@ -111,11 +124,60 @@ namespace Dictionar.Pages
 					Image = Utils.GetBase64FromImage(imageImage.Source as BitmapImage)
 				};
 				Dictionary.CreateEntry(CurrentEntry);
+
+				Debug(Utils.Debug.Good, "Entry created.");
 			}
 			else
 			{
 				CurrentEntry.Definition = definitionAnswerTextBox.Text.Trim();
 				Dictionary.UpdateEntry(CurrentEntry);
+
+				Debug(Utils.Debug.Good, "Entry updated.");
+			}
+		}
+
+		private void deleteButton_Click(object sender, RoutedEventArgs e)
+		{
+			if (CurrentEntry != null && (CurrentEntry = Dictionary.Search(CurrentEntry.Word)) != null)
+			{
+				Dictionary.DeleteEntry(CurrentEntry);
+				CurrentEntry = null;
+
+				wordTextBox.Text = string.Empty;
+				definitionAnswerTextBox.Text = string.Empty;
+				imageImage.Source = null;
+
+				Debug(Utils.Debug.Good, "Entry deleted.");
+			}
+		}
+
+		private void Debug(Utils.Debug kind, string info, bool append = false)
+		{
+			if (append)
+			{
+				debugLabel.Content = debugLabel.Content + " " + info;
+			}
+			else
+			{
+				debugLabel.Content = info;
+			}
+
+			switch (kind)
+			{
+				case Utils.Debug.Good:
+					debugSymbol.Text = tick;
+					debugSymbol.Foreground = Brushes.Green;
+					break;
+
+				case Utils.Debug.Bad:
+					debugSymbol.Text = x;
+					debugSymbol.Foreground = Brushes.Red;
+					break;
+
+				default:
+					debugSymbol.Text = x;
+					debugSymbol.Foreground = Brushes.Blue;
+					break;
 			}
 		}
 	}

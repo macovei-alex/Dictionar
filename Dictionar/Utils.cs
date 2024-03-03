@@ -30,6 +30,13 @@ namespace Dictionar
 			TextInputWindow
 		}
 
+		public enum Debug
+		{
+			Invalid,
+			Good,
+			Bad
+		}
+
 		public static Uri DefaultImageUri => new Uri(Path.GetFullPath(Properties.Settings.Default.DefaultImage));
 
 		public static string FullWordsDirectory => Path.GetFullPath(Properties.Settings.Default.WordsDirectory);
