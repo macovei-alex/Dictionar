@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Dictionar.DataHandling
 {
 	public class Dictionary
 	{
 		private IDataSource<DictionaryEntry> DataSource { get; set; }
+		//private string[] WordsStream { get; set; }
 
 		public Dictionary(IDataSource<DictionaryEntry> dataSource)
 		{
 			DataSource = dataSource;
+			//WordsStream = File.ReadAllText(wordContentsPath).Split(' ');
 		}
 
 		public void CreateEntry(DictionaryEntry entry)

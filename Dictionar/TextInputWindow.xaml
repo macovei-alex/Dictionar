@@ -1,0 +1,27 @@
+﻿<Window x:Name="Close" x:Class="Dictionar.TextInputWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Dictionar"
+        mc:Ignorable="d"
+        Title="TextInputWindow"
+        Width="400" Height="300" Closing="Close_Closing">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="50px"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Name="questionLabel" Content="[question here]" Grid.ColumnSpan="2" FontFamily="Consolas" FontSize="15" Width="300" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
+        <TextBox Name="answerTextBox" Grid.Row="1" Grid.ColumnSpan="2" FontFamily="Consolas" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center" Width="300" TextWrapping="Wrap" MaxHeight="160px"/>
+
+        <Button Name="acceptButton" Content="Done" Grid.Row="2" Grid.Column="0" FontFamily="Consolas" FontSize="15" Width="75" Height="30px" Click="acceptButton_Click"/>
+        <Button Name="cancelButton" Content="Cancel" Grid.Row="2" Grid.Column="1" FontFamily="Consolas" FontSize="15" Width="75" Height="30px" Click="cancelButton_Click"/>
+    </Grid>
+</Window>

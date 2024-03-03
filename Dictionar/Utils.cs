@@ -6,6 +6,7 @@ using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Media.Imaging;
 using Dictionar.DataHandling;
@@ -54,6 +55,20 @@ namespace Dictionar
 			catch (Exception exception)
 			{
 				throw exception;
+			}
+		}
+
+		public static string GetBase64FromImage(BitmapImage bitmapImage)
+		{
+			if (bitmapImage == null)
+			{
+				return null;
+			}
+
+			using (var ms = new MemoryStream())
+			{
+				bitmapImage.StreamSource.CopyTo(ms);
+				return Convert.ToBase64String(ms.ToArray());
 			}
 		}
 	}

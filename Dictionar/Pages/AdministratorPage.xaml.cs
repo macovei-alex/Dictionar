@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Dictionar.DataHandling;
 using System.IO;
+using System.ComponentModel;
 
 namespace Dictionar.Pages
 {
@@ -24,6 +25,8 @@ namespace Dictionar.Pages
 	public partial class AdministratorPage : Page
 	{
 		private MainWindow ParentWindow => Window.GetWindow(this) as MainWindow;
+		private Dictionary Dictionary => ParentWindow.Dictionary;
+		private DictionaryEntry CurrentEntry { get; set; }
 
 		public AdministratorPage()
 		{
@@ -39,55 +42,102 @@ namespace Dictionar.Pages
 		{
 			if (e.Key == Key.Enter)
 			{
-				var dictionaryEntry = ParentWindow.Search(wordTextBox.Text.Trim());
-				if (dictionaryEntry != null)
+				CurrentEntry = ParentWindow.Search(wordTextBox.Text.Trim());
+				if (CurrentEntry != null)
 				{
-					definitionAnswerLabel.Content = dictionaryEntry.Definition;
+					// remove
+					definitionAnswerTextBox.Text = CurrentEntry.Definition;
 
 					try
 					{
-						imageImage.Source = Utils.GetImageFromBase64(dictionaryEntry.Image);
+						if (CurrentEntry.Image == DictionaryEntry.DefaultImageString)
+						{
+							CurrentEntry.Image = Utils.GetBase64FromImage(new BitmapImage(new Uri(Properties.Settings.Default.DefaultImage)));
+						}
+
+						imageImage.Source = Utils.GetImageFromBase64(CurrentEntry.Image);
 					}
 					catch (Exception)
 					{
-						imageImage.Source = new BitmapImage(new Uri(Properties.Settings.Default.DefaultImage));
+						var bitmap = new BitmapImage(new Uri(Properties.Settings.Default.DefaultImage));
+
+						imageImage.Source = bitmap;
+						CurrentEntry.Image = Utils.GetBase64FromImage(bitmap);
+						MessageBox.Show("Failed to load image");
 					}
 				}
 				else
 				{
-					definitionAnswerLabel.Content = $"The word \"{wordTextBox.Text.Trim()}\" could not be found in the dictionary";
+					CurrentEntry = new DictionaryEntry(wordTextBox.Text.Trim());
+					definitionAnswerTextBox.Text = string.Empty;
 					imageImage.Source = null;
 				}
 			}
 		}
 
-		private void changeDefinitionButton_Click(object sender, RoutedEventArgs e)
+		/*private void changeDefinitionButton_Click(object sender, RoutedEventArgs e)
 		{
-
-		}
-
-		private void changeImageButton_Click(object sender, RoutedEventArgs e)
-		{
-			if (ParentWindow.Dictionary.ReadEntryOrNull(wordTextBox.Text.Trim()) == null)
+			if (CurrentEntry == null)
 			{
 				MessageBox.Show("The word does not exist in the dictionary", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 				return;
 			}
 
+			var textInputWindow = new TextInputWindow("Insert the new definition here");
+			textInputWindow.Closing += this.TextInputWindowClosing;
+
+			textInputWindow.Show();
+			IsTextInputWindowOpen = true;
+		}*/
+
+		private void changeImageButton_Click(object sender, RoutedEventArgs e)
+		{
 			FileDialog fileDialog = new OpenFileDialog
 			{
 				Filter = "Image files (*.png;*.jpeg;*.jpg)|*.png;*.jpeg;*.jpg",
 				InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures)
 			};
 
-			var result = fileDialog.ShowDialog();
-			if (result == true)
+			if (fileDialog.ShowDialog() == true)
 			{
-				var imageBase64 = Convert.ToBase64String(File.ReadAllBytes(fileDialog.FileName));
+				if (CurrentEntry == null)
+				{
+					CurrentEntry = new DictionaryEntry(wordTextBox.Text.Trim());
+				}
 
-				ParentWindow.Dictionary.UpdateEntry(new DictionaryEntry(wordTextBox.Text.Trim(), definitionAnswerLabel.Content.ToString().Trim(), imageBase64));
+				CurrentEntry.Image = Convert.ToBase64String(File.ReadAllBytes(fileDialog.FileName));
+				imageImage.Source = Utils.GetImageFromBase64(CurrentEntry.Image);
+			}
+		}
 
-				imageImage.Source = Utils.GetImageFromBase64(imageBase64);
+		private void saveButton_Click(object sender, RoutedEventArgs e)
+		{
+			if (CurrentEntry == null)
+			{
+				CurrentEntry = new DictionaryEntry()
+				{
+					Word = wordTextBox.Text.Trim(),
+					Definition = definitionAnswerTextBox.Text.Trim(),
+					Image = Utils.GetBase64FromImage(imageImage.Source as BitmapImage)
+				};
+				Dictionary.CreateEntry(CurrentEntry);
+			}
+			else
+			{
+				CurrentEntry.Definition = definitionAnswerTextBox.Text.Trim();
+				Dictionary.UpdateEntry(CurrentEntry);
+			}
+		}
+
+		public void TextInputWindowClosing(object sender, EventArgs e)
+		{
+			var inputWindow = sender as TextInputWindow;
+
+			if (inputWindow.buttonClicked == TextInputWindow.Button.Accept)
+			{
+				CurrentEntry.Definition = inputWindow.answerTextBox.Text.Trim();
+				ParentWindow.Dictionary.UpdateEntry(CurrentEntry);
+				definitionAnswerTextBox.Text = CurrentEntry.Definition;
 			}
 		}
 	}

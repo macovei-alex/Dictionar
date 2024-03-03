@@ -29,15 +29,12 @@
 
         <TextBox Name="wordTextBox" Grid.Row="0" Grid.Column="1" FontSize="15" FontFamily="Consolas" VerticalAlignment="Center" HorizontalAlignment="Left" PreviewKeyDown="wordTextBox_PreviewKeyDown" Width="250"/>
         <Border Name="definitionAnswerBorder" BorderThickness="2" BorderBrush="Black" Grid.Column="1" Grid.Row="1">
-            <Label Name="definitionAnswerLabel" Content="" Grid.Column="1" Grid.Row="1" FontSize="15" FontFamily="Consolas" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            <TextBox Name="definitionAnswerTextBox" Grid.Column="1" Grid.Row="1" FontSize="15" FontFamily="Consolas" VerticalAlignment="Top" HorizontalAlignment="Left" TextWrapping="Wrap" Width="525px" Height="60px"/>
         </Border>
         <Image Name="imageImage" Grid.Row="2" Grid.Column="1" Width="400" HorizontalAlignment="Left"></Image>
 
-        <Button Name="mainPageButton" Content="Go back" Grid.Row="3" Click="mainPageButton_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5, 5"/>
-
-        <Button Name="changeDefinitionButton" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" HorizontalContentAlignment="Center" Padding="5, 5" FontFamily="Consolas" FontSize="15" Width="100" Click="changeDefinitionButton_Click" Margin="10, 5, 5, 5">
-            <TextBlock Text="Change the definition" TextWrapping="Wrap"/>
-        </Button>
+        <Button Name="mainPageButton" Content="Go back" Grid.Row="3" Grid.Column="2" Click="mainPageButton_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5, 5"/>
+        <Button Name="saveButton" Content="Create/Update entry" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Padding="5, 5" Margin="416,0,0,0" Grid.RowSpan="2" Click="saveButton_Click"/>
 
         <Button Name="changeImageButton" Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" HorizontalContentAlignment="Center" Padding="5, 5" FontFamily="Consolas" FontSize="15" Width="100" Click="changeImageButton_Click" Margin="10, 5, 5, 5">
             <TextBlock Text="Change the image" TextWrapping="Wrap"/>

@@ -9,6 +9,8 @@ namespace Dictionar.DataHandling
 {
 	public class DictionaryEntry : FileEntry
 	{
+		public static string DefaultImageString { get => "default"; }
+
 		public override string Key
 		{
 			get
@@ -47,6 +49,13 @@ namespace Dictionar.DataHandling
 		public DictionaryEntry(string word)
 		{
 			Word = word;
+			Definition = string.Empty;
+			Image = string.Empty;
+		}
+
+		public DictionaryEntry()
+		{
+			Word = string.Empty;
 			Definition = string.Empty;
 			Image = string.Empty;
 		}
