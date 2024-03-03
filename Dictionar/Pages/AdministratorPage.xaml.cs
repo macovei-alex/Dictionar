@@ -28,9 +28,6 @@ namespace Dictionar.Pages
 		private Dictionary Dictionary => ParentWindow.Dictionary;
 		private DictionaryEntry CurrentEntry { get; set; }
 
-		private const string tick = "\u2714";
-		private const string x = "\u2716";
-
 		public AdministratorPage()
 		{
 			InitializeComponent();
@@ -165,17 +162,17 @@ namespace Dictionar.Pages
 			switch (kind)
 			{
 				case Utils.Debug.Good:
-					debugSymbol.Text = tick;
+					debugSymbol.Text = Utils.tick;
 					debugSymbol.Foreground = Brushes.Green;
 					break;
 
 				case Utils.Debug.Bad:
-					debugSymbol.Text = x;
+					debugSymbol.Text = Utils.x;
 					debugSymbol.Foreground = Brushes.Red;
 					break;
 
 				default:
-					debugSymbol.Text = x;
+					debugSymbol.Text = Utils.x;
 					debugSymbol.Foreground = Brushes.Blue;
 					break;
 			}

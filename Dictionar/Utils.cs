@@ -13,7 +13,7 @@ using Dictionar.DataHandling;
 
 namespace Dictionar
 {
-	internal class Utils
+	public class Utils
 	{
 		public enum Pages
 		{
@@ -36,6 +36,9 @@ namespace Dictionar
 			Good,
 			Bad
 		}
+
+		public const string tick = "\u2714";
+		public const string x = "\u2716";
 
 		public static Uri DefaultImageUri => new Uri(Path.GetFullPath(Properties.Settings.Default.DefaultImage));
 
