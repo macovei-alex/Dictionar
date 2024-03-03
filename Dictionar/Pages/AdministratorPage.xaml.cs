@@ -101,7 +101,7 @@ namespace Dictionar.Pages
 
 		private void saveButton_Click(object sender, RoutedEventArgs e)
 		{
-			if (CurrentEntry == null)
+			if (CurrentEntry == null || ParentWindow.Search(CurrentEntry.Word) == null)
 			{
 				CurrentEntry = new DictionaryEntry()
 				{
