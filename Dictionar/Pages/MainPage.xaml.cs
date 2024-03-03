@@ -31,5 +31,10 @@ namespace Dictionar.Pages
 		{
 			ParentWindow.SwapPage(Utils.Pages.DictionaryModePage);
 		}
+
+		private void administratorButton_Click(object sender, RoutedEventArgs e)
+		{
+			ParentWindow.SwapPage(Utils.Pages.AdministratorPage);
+		}
 	}
 }

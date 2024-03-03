@@ -18,13 +18,15 @@ namespace Dictionar
 		{
 			Invalid,
 			MainPage,
-			DictionaryModePage
+			DictionaryModePage,
+			AdministratorPage
 		};
 
 		public static readonly Dictionary<Pages, string> pageMap = new Dictionary<Pages, string>
 		{
 			{ Pages.MainPage, "MainPage" },
-			{ Pages.DictionaryModePage, "DictionaryModePage" }
+			{ Pages.DictionaryModePage, "DictionaryModePage" },
+			{ Pages.AdministratorPage, "AdministratorPage" }
 		};
 
 		public static string GetPageName(Pages page)

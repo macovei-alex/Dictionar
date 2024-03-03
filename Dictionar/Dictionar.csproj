@@ -61,7 +61,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Pages\AdministratorPage.xaml.cs">
+      <DependentUpon>AdministratorPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utils.cs" />
+    <Page Include="Pages\AdministratorPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\DictionaryModePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

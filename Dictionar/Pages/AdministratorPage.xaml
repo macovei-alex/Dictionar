@@ -1,0 +1,46 @@
+﻿<Page x:Class="Dictionar.Pages.AdministratorPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Dictionar.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Width="800" Height="450"
+      Title="AdministratorPage">
+
+    <Grid Margin="20, 10" Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Name="wordLabel" Grid.Row="0" Content="Your word:" FontSize="15" FontFamily="Consolas" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+        <Label Name="definitionLabel" Grid.Row="1" Content="Definition: " FontSize="15" FontFamily="Consolas" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+        <Label Name="imageLabel" Grid.Row="2" Content="Image: " FontSize="15" FontFamily="Consolas" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+
+        <TextBox Name="wordTextBox" Grid.Row="0" Grid.Column="1" FontSize="15" FontFamily="Consolas" VerticalAlignment="Center" HorizontalAlignment="Left" PreviewKeyDown="wordTextBox_PreviewKeyDown" Width="250"/>
+        <Border Name="definitionAnswerBorder" BorderThickness="2" BorderBrush="Black" Grid.Column="1" Grid.Row="1">
+            <Label Name="definitionAnswerLabel" Content="" Grid.Column="1" Grid.Row="1" FontSize="15" FontFamily="Consolas" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        </Border>
+        <Image Name="imageImage" Grid.Row="2" Grid.Column="1" Width="400" HorizontalAlignment="Left"></Image>
+
+        <Button Name="mainPageButton" Content="Go back" Grid.Row="3" Click="mainPageButton_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5, 5"/>
+
+        <Button Name="changeDefinitionButton" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" HorizontalContentAlignment="Center" Padding="5, 5" FontFamily="Consolas" FontSize="15" Width="100" Click="changeDefinitionButton_Click" Margin="10, 5, 5, 5">
+            <TextBlock Text="Change the definition" TextWrapping="Wrap"/>
+        </Button>
+
+        <Button Name="changeImageButton" Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" HorizontalContentAlignment="Center" Padding="5, 5" FontFamily="Consolas" FontSize="15" Width="100" Click="changeImageButton_Click" Margin="10, 5, 5, 5">
+            <TextBlock Text="Change the image" TextWrapping="Wrap"/>
+        </Button>
+    </Grid>
+</Page>
