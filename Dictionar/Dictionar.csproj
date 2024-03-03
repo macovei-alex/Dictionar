@@ -139,7 +139,6 @@
   <ItemGroup>
     <Folder Include="Resources\Words\a\" />
     <Folder Include="Resources\Words\b\" />
-    <Folder Include="Resources\Words\c\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
