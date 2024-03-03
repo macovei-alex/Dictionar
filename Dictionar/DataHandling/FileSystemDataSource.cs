@@ -19,7 +19,13 @@ namespace Dictionar.DataHandling
 
 		public void CreateEntry(T entry)
 		{
-			var path = Path.Combine(DirectoryPath, entry.CollectionKey, entry.FileName);
+			var directoryPath = Path.Combine(DirectoryPath, entry.CollectionKey);
+			if (!Directory.Exists(directoryPath))
+			{
+				Directory.CreateDirectory(directoryPath);
+			}
+
+			var path = Path.Combine(directoryPath, entry.FileName);
 
 			if (File.Exists(path))
 			{
