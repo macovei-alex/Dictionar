@@ -10,12 +10,10 @@ namespace Dictionar.DataHandling
 	public class Dictionary
 	{
 		private IDataSource<DictionaryEntry> DataSource { get; set; }
-		//private string[] WordsStream { get; set; }
 
 		public Dictionary(IDataSource<DictionaryEntry> dataSource)
 		{
 			DataSource = dataSource;
-			//WordsStream = File.ReadAllText(wordContentsPath).Split(' ');
 		}
 
 		public void CreateEntry(DictionaryEntry entry)
@@ -122,6 +120,11 @@ namespace Dictionar.DataHandling
 			{
 				return false;
 			}
+		}
+
+		public DictionaryEntry Search(string word)
+		{
+			return ReadEntryOrNull(word);
 		}
 	}
 }

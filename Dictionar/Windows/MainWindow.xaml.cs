@@ -41,10 +41,5 @@ namespace Dictionar
 		{
 			MainFrame.Navigate(new Uri($"Pages\\{pageName}.xaml", UriKind.Relative));
 		}
-
-		public DictionaryEntry Search(string word)
-		{
-			return Dictionary.ReadEntryOrNull(word);
-		}
 	}
 }

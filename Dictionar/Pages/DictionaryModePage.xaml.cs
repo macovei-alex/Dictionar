@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -13,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Dictionar.DataHandling;
 
 namespace Dictionar
 {
@@ -22,6 +22,7 @@ namespace Dictionar
 	public partial class DictionaryModePage : Page
 	{
 		private MainWindow ParentWindow => Window.GetWindow(this) as MainWindow;
+		private Dictionary Dictionary => ParentWindow.Dictionary;
 
 		public DictionaryModePage()
 		{
@@ -37,7 +38,7 @@ namespace Dictionar
 		{
 			if (e.Key == Key.Enter)
 			{
-				var dictionaryEntry = ParentWindow.Search(wordTextBox.Text.Trim());
+				var dictionaryEntry = Dictionary.Search(wordTextBox.Text.Trim());
 				if (dictionaryEntry != null)
 				{
 					definitionAnswerLabel.Content = dictionaryEntry.Definition;

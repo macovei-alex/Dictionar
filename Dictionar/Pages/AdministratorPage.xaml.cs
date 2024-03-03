@@ -42,15 +42,16 @@ namespace Dictionar.Pages
 		{
 			if (e.Key == Key.Enter)
 			{
-				CurrentEntry = ParentWindow.Search(wordTextBox.Text.Trim());
+				CurrentEntry = Dictionary.Search(wordTextBox.Text.Trim());
 				if (CurrentEntry != null)
 				{
 					definitionAnswerTextBox.Text = CurrentEntry.Definition;
 
 					try
 					{
-						if (CurrentEntry.Image == DictionaryEntry.DefaultImageString
-							|| CurrentEntry.Image == string.Empty)
+						if (CurrentEntry.Image == null
+							|| CurrentEntry.Image == string.Empty
+							|| CurrentEntry.Image == DictionaryEntry.DefaultImageString)
 						{
 							var bitmapImage = new BitmapImage(Utils.DefaultImageUri);
 							imageImage.Source = bitmapImage;
@@ -94,6 +95,7 @@ namespace Dictionar.Pages
 					CurrentEntry = new DictionaryEntry(wordTextBox.Text.Trim());
 				}
 
+				var bitmap = new BitmapImage(new Uri(fileDialog.FileName));
 				CurrentEntry.Image = Convert.ToBase64String(File.ReadAllBytes(fileDialog.FileName));
 				imageImage.Source = Utils.GetImageFromBase64(CurrentEntry.Image);
 			}
@@ -101,7 +103,7 @@ namespace Dictionar.Pages
 
 		private void saveButton_Click(object sender, RoutedEventArgs e)
 		{
-			if (CurrentEntry == null || ParentWindow.Search(CurrentEntry.Word) == null)
+			if (CurrentEntry == null || Dictionary.Search(CurrentEntry.Word) == null)
 			{
 				CurrentEntry = new DictionaryEntry()
 				{
