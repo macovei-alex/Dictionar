@@ -3,10 +3,10 @@
   <Profiles />
   <Settings>
     <Setting Name="WordsDirectory" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">C:\Mac\Facultate\Anul_2\MAP\tema1 - Dictionar\Dictionar\Dictionar\Resources\Words</Value>
+      <Value Profile="(Default)">..\..\Resources\Words</Value>
     </Setting>
     <Setting Name="DefaultImage" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">C:\Mac\Facultate\Anul_2\MAP\tema1 - Dictionar\Dictionar\Dictionar\Resources\DefaultImage.png</Value>
+      <Value Profile="(Default)">..\..\Resources\DefaultImage.png</Value>
     </Setting>
   </Settings>
 </SettingsFile>

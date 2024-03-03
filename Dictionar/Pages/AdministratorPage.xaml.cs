@@ -45,21 +45,21 @@ namespace Dictionar.Pages
 				CurrentEntry = ParentWindow.Search(wordTextBox.Text.Trim());
 				if (CurrentEntry != null)
 				{
-					// remove
 					definitionAnswerTextBox.Text = CurrentEntry.Definition;
 
 					try
 					{
-						if (CurrentEntry.Image == DictionaryEntry.DefaultImageString)
+						if (CurrentEntry.Image == DictionaryEntry.DefaultImageString
+							|| CurrentEntry.Image == string.Empty)
 						{
-							CurrentEntry.Image = Utils.GetBase64FromImage(new BitmapImage(new Uri(Properties.Settings.Default.DefaultImage)));
+							CurrentEntry.Image = Utils.GetBase64FromImage(new BitmapImage(Utils.DefaultImageUri));
 						}
 
 						imageImage.Source = Utils.GetImageFromBase64(CurrentEntry.Image);
 					}
 					catch (Exception)
 					{
-						var bitmap = new BitmapImage(new Uri(Properties.Settings.Default.DefaultImage));
+						var bitmap = new BitmapImage(Utils.DefaultImageUri);
 
 						imageImage.Source = bitmap;
 						CurrentEntry.Image = Utils.GetBase64FromImage(bitmap);

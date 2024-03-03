@@ -48,7 +48,7 @@ namespace Dictionar
 					}
 					catch (Exception)
 					{
-						imageImage.Source = new BitmapImage(new Uri(Properties.Settings.Default.DefaultImage));
+						imageImage.Source = new BitmapImage(Utils.DefaultImageUri);
 					}
 				}
 				else

@@ -25,8 +25,7 @@ namespace Dictionar.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Mac\\Facultate\\Anul_2\\MAP\\tema1 - Dictionar\\Dictionar\\Dictionar\\Resources\\Words" +
-            "")]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\Resources\\Words")]
         public string WordsDirectory {
             get {
                 return ((string)(this["WordsDirectory"]));
@@ -35,8 +34,7 @@ namespace Dictionar.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Mac\\Facultate\\Anul_2\\MAP\\tema1 - Dictionar\\Dictionar\\Dictionar\\Resources\\Defau" +
-            "ltImage.png")]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\Resources\\DefaultImage.png")]
         public string DefaultImage {
             get {
                 return ((string)(this["DefaultImage"]));

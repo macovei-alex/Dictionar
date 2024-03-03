@@ -29,7 +29,7 @@ namespace Dictionar
 			SwapPage(Utils.Pages.MainPage);
 			SizeToContent = SizeToContent.WidthAndHeight;
 
-			Dictionary = new Dictionary(new FileSystemDataSource<DictionaryEntry>(Properties.Settings.Default.WordsDirectory));
+			Dictionary = new Dictionary(new FileSystemDataSource<DictionaryEntry>(Utils.FullWordsDirectory));
 		}
 
 		internal void SwapPage(Utils.Pages page)

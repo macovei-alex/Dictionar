@@ -60,7 +60,7 @@ namespace Dictionar
 
 		public static string GetBase64FromImage(BitmapImage bitmapImage)
 		{
-			if (bitmapImage == null)
+			if (bitmapImage.StreamSource == null)
 			{
 				return null;
 			}
@@ -71,5 +71,9 @@ namespace Dictionar
 				return Convert.ToBase64String(ms.ToArray());
 			}
 		}
+
+		public static Uri DefaultImageUri => new Uri(Path.GetFullPath(Properties.Settings.Default.DefaultImage));
+
+		public static string FullWordsDirectory => Path.GetFullPath(Properties.Settings.Default.WordsDirectory);
 	}
 }
