@@ -12,6 +12,7 @@ namespace Dictionar.DataHandling
 	{
 		public string DirectoryPath { get; set; }
 		private bool _directoriesCleaned;
+		private readonly Random _random;
 
 		public FileSystemDataSource(string directoryPath)
 		{
@@ -19,6 +20,7 @@ namespace Dictionar.DataHandling
 
 			CleanDirectories();
 			_directoriesCleaned = true;
+			_random = new Random();
 		}
 
 		public void CreateEntry(T entry)
@@ -149,10 +151,13 @@ namespace Dictionar.DataHandling
 
 			try
 			{
-				var collectionDirectory = Directory.GetDirectories(DirectoryPath).OrderBy(x => Guid.NewGuid()).First();
-				var collectionPath = Path.Combine(DirectoryPath, collectionDirectory);
-				var fileName = Directory.GetFiles(collectionPath).OrderBy(x => Guid.NewGuid()).First();
-				var entryPath = Path.Combine(collectionPath, fileName);
+				string[] collections = Directory.GetDirectories(DirectoryPath);
+				string collection = collections[_random.Next(0, collections.Length)];
+
+				string[] files = Directory.GetFiles(collection);
+				string file = files[_random.Next(0, files.Length)];
+
+				string entryPath = Path.Combine(DirectoryPath, collection, file);
 
 				return JsonConvert.DeserializeObject<T>(File.ReadAllText(entryPath));
 			}
