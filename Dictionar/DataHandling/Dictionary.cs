@@ -126,5 +126,10 @@ namespace Dictionar.DataHandling
 		{
 			return ReadEntryOrNull(word);
 		}
+
+		public DictionaryEntry Random()
+		{
+			return DataSource.RandomEntry();
+		}
 	}
 }

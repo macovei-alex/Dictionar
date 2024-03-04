@@ -17,5 +17,7 @@ namespace Dictionar
 
 		void DeleteEntry(T entry);
 		void DeleteEntry(string key);
+
+		T RandomEntry();
 	}
 }

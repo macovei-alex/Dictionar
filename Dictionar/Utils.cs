@@ -20,7 +20,8 @@ namespace Dictionar
 			Invalid,
 			MainPage,
 			DictionaryModePage,
-			AdministratorPage
+			AdministratorPage,
+			GamePage
 		};
 
 		public enum Windows
@@ -48,7 +49,8 @@ namespace Dictionar
 		{
 			{ Pages.MainPage, "MainPage" },
 			{ Pages.DictionaryModePage, "DictionaryModePage" },
-			{ Pages.AdministratorPage, "AdministratorPage" }
+			{ Pages.AdministratorPage, "AdministratorPage" },
+			{ Pages.GamePage, "GamePage" }
 		};
 
 		public static Dictionary<Windows, string> WindowMap { get; } = new Dictionary<Windows, string>

@@ -37,5 +37,10 @@ namespace Dictionar.Pages
 		{
 			ParentWindow.SwapPage(Utils.Pages.AdministratorPage);
 		}
+
+		private void gameButton_Click(object sender, RoutedEventArgs e)
+		{
+			ParentWindow.SwapPage(Utils.Pages.GamePage);
+		}
 	}
 }

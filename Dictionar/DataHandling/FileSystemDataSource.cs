@@ -11,10 +11,14 @@ namespace Dictionar.DataHandling
 	public class FileSystemDataSource<T> : IDataSource<T> where T : FileEntry
 	{
 		public string DirectoryPath { get; set; }
+		private bool _directoriesCleaned;
 
 		public FileSystemDataSource(string directoryPath)
 		{
 			DirectoryPath = directoryPath;
+
+			CleanDirectories();
+			_directoriesCleaned = true;
 		}
 
 		public void CreateEntry(T entry)
@@ -112,6 +116,8 @@ namespace Dictionar.DataHandling
 				}
 
 				File.Delete(path);
+
+				_directoriesCleaned = false;
 			}
 			catch (Exception exception)
 			{
@@ -124,10 +130,46 @@ namespace Dictionar.DataHandling
 			try
 			{
 				DeleteEntry(Activator.CreateInstance(typeof(T), key) as T);
+
+				_directoriesCleaned = false;
 			}
 			catch (Exception exception)
 			{
 				throw exception;
+			}
+		}
+
+		public T RandomEntry()
+		{
+			if (_directoriesCleaned == false)
+			{
+				CleanDirectories();
+				_directoriesCleaned = true;
+			}
+
+			try
+			{
+				var collectionDirectory = Directory.GetDirectories(DirectoryPath).OrderBy(x => Guid.NewGuid()).First();
+				var collectionPath = Path.Combine(DirectoryPath, collectionDirectory);
+				var fileName = Directory.GetFiles(collectionPath).OrderBy(x => Guid.NewGuid()).First();
+				var entryPath = Path.Combine(collectionPath, fileName);
+
+				return JsonConvert.DeserializeObject<T>(File.ReadAllText(entryPath));
+			}
+			catch (Exception exception)
+			{
+				throw exception;
+			}
+		}
+
+		private void CleanDirectories()
+		{
+			foreach (var collectionDirectory in Directory.GetDirectories(DirectoryPath))
+			{
+				if (Directory.GetFiles(collectionDirectory).Length == 0)
+				{
+					Directory.Delete(collectionDirectory);
+				}
 			}
 		}
 	}
