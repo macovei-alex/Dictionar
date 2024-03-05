@@ -96,7 +96,7 @@ namespace Dictionar
 		{
 			if (bitmapImage == null)
 			{
-				throw new Exception("Null bitmap parameter.");
+				return DictionaryEntry.DefaultImageString;
 			}
 
 			try
