@@ -26,11 +26,22 @@ namespace Dictionar.Pages
 	{
 		private MainWindow ParentWindow => Window.GetWindow(this) as MainWindow;
 		private Dictionary Dictionary => ParentWindow.Dictionary;
-		private DictionaryEntry CurrentEntry { get; set; }
+		private DictionaryEntry CurrentEntry
+		{
+			get
+			{
+				return (DataContext as DictionaryEntryContext).DictionaryEntry;
+			}
+			set
+			{
+				(DataContext as DictionaryEntryContext).DictionaryEntry = value;
+			}
+		}
 
 		public AdministratorPage()
 		{
 			InitializeComponent();
+			CurrentEntry = DictionaryEntry.Empty;
 		}
 
 		private void mainPageButton_Click(object sender, RoutedEventArgs e)
@@ -42,11 +53,11 @@ namespace Dictionar.Pages
 		{
 			if (e.Key == Key.Enter)
 			{
-				CurrentEntry = Dictionary.Search(wordTextBox.Text.Trim());
-				if (CurrentEntry != null)
-				{
-					definitionAnswerTextBox.Text = CurrentEntry.Definition;
+				string text = wordTextBox.Text.Trim();
+				CurrentEntry = SafeSearch();
 
+				if (CurrentEntry != DictionaryEntry.Empty)
+				{
 					Debug(Utils.Debug.Good, "Entry found.");
 
 					try
@@ -79,8 +90,7 @@ namespace Dictionar.Pages
 				}
 				else
 				{
-					CurrentEntry = new DictionaryEntry(wordTextBox.Text.Trim());
-					definitionAnswerTextBox.Text = string.Empty;
+					CurrentEntry.Word = text;
 					imageImage.Source = null;
 
 					Debug(Utils.Debug.Bad, "Entry not found.");
@@ -98,12 +108,7 @@ namespace Dictionar.Pages
 
 			if (fileDialog.ShowDialog() == true)
 			{
-				if (CurrentEntry == null)
-				{
-					CurrentEntry = new DictionaryEntry(wordTextBox.Text.Trim());
-				}
-
-				CurrentEntry.Image = Convert.ToBase64String(File.ReadAllBytes(fileDialog.FileName));
+				CurrentEntry = new DictionaryEntry(wordTextBox.Text.Trim());
 				imageImage.Source = Utils.GetImageFromBase64(CurrentEntry.Image);
 
 				Debug(Utils.Debug.Good, "Image uploaded.");
@@ -112,7 +117,7 @@ namespace Dictionar.Pages
 
 		private void saveButton_Click(object sender, RoutedEventArgs e)
 		{
-			if (CurrentEntry == null || Dictionary.Search(CurrentEntry.Word) == null)
+			if (Dictionary.Search(CurrentEntry.Word) == null)
 			{
 				CurrentEntry = new DictionaryEntry()
 				{
@@ -126,7 +131,6 @@ namespace Dictionar.Pages
 			}
 			else
 			{
-				CurrentEntry.Definition = definitionAnswerTextBox.Text.Trim();
 				Dictionary.UpdateEntry(CurrentEntry);
 
 				Debug(Utils.Debug.Good, "Entry updated.");
@@ -135,13 +139,10 @@ namespace Dictionar.Pages
 
 		private void deleteButton_Click(object sender, RoutedEventArgs e)
 		{
-			if (CurrentEntry != null && (CurrentEntry = Dictionary.Search(CurrentEntry.Word)) != null)
+			if ((CurrentEntry = SafeSearch()) != DictionaryEntry.Empty)
 			{
 				Dictionary.DeleteEntry(CurrentEntry);
-				CurrentEntry = null;
-
-				wordTextBox.Text = string.Empty;
-				definitionAnswerTextBox.Text = string.Empty;
+				CurrentEntry = DictionaryEntry.Empty;
 				imageImage.Source = null;
 
 				Debug(Utils.Debug.Good, "Entry deleted.");
@@ -176,6 +177,12 @@ namespace Dictionar.Pages
 					debugSymbol.Foreground = Brushes.Blue;
 					break;
 			}
+		}
+
+		private DictionaryEntry SafeSearch()
+		{
+			var entry = Dictionary.Search(wordTextBox.Text.Trim());
+			return entry ?? DictionaryEntry.Empty;
 		}
 	}
 }
