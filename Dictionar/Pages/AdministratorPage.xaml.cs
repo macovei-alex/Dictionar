@@ -54,10 +54,11 @@ namespace Dictionar.Pages
 		{
 			if (e.Key == Key.Enter)
 			{
-				string word = string.Copy(wordTextBox.Text);
+				var entry = SafeSearch();
 
-				if ((CurrentEntry = SafeSearch()) != DictionaryEntry.Empty)
+				if (entry != DictionaryEntry.Empty)
 				{
+					CurrentEntry = entry;
 					Debug(Utils.Debug.Good, "Entry found.");
 
 					try
@@ -88,7 +89,6 @@ namespace Dictionar.Pages
 				}
 				else
 				{
-					CurrentEntry = new DictionaryEntry(word);
 					imageImage.Source = null;
 
 					Debug(Utils.Debug.Bad, "Entry not found.");
@@ -108,8 +108,9 @@ namespace Dictionar.Pages
 
 			if (fileDialog.ShowDialog() == true)
 			{
-				CurrentEntry = new DictionaryEntry(CurrentEntry.Word);
-				imageImage.Source = Utils.GetImageFromBase64(CurrentEntry.Image);
+				BitmapImage bitmapImage = new BitmapImage(new Uri(fileDialog.FileName));
+				CurrentEntry.Image = Utils.GetBase64FromImage(bitmapImage);
+				imageImage.Source = bitmapImage;
 
 				Debug(Utils.Debug.Good, "Image uploaded.");
 			}
@@ -119,12 +120,9 @@ namespace Dictionar.Pages
 		{
 			if (SafeSearch() == DictionaryEntry.Empty)
 			{
-				CurrentEntry = new DictionaryEntry()
-				{
-					Word = wordTextBox.Text.Trim(),
-					Definition = definitionAnswerTextBox.Text.Trim(),
-					Image = Utils.GetBase64FromImage(imageImage.Source as BitmapImage)
-				};
+				CurrentEntry.Word = CurrentEntry.Word.Trim();
+				CurrentEntry.Definition = CurrentEntry.Definition.Trim();
+				CurrentEntry.Image = Utils.GetBase64FromImage(imageImage.Source as BitmapImage);
 				Dictionary.CreateEntry(CurrentEntry);
 
 				Debug(Utils.Debug.Good, "Entry created.");
@@ -163,17 +161,17 @@ namespace Dictionar.Pages
 			switch (kind)
 			{
 				case Utils.Debug.Good:
-					debugSymbol.Text = Utils.tick;
+					debugSymbol.Text = Utils.GoodAnswer;
 					debugSymbol.Foreground = Brushes.Green;
 					break;
 
 				case Utils.Debug.Bad:
-					debugSymbol.Text = Utils.x;
+					debugSymbol.Text = Utils.BadAnswer;
 					debugSymbol.Foreground = Brushes.Red;
 					break;
 
 				default:
-					debugSymbol.Text = Utils.x;
+					debugSymbol.Text = Utils.BadAnswer;
 					debugSymbol.Foreground = Brushes.Blue;
 					break;
 			}
@@ -181,6 +179,7 @@ namespace Dictionar.Pages
 
 		private DictionaryEntry SafeSearch()
 		{
+			CurrentEntry.Word = CurrentEntry.Word.Trim();
 			return Dictionary.Search(CurrentEntry.Word) ?? DictionaryEntry.Empty;
 		}
 	}

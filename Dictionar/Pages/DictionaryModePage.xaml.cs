@@ -57,6 +57,8 @@ namespace Dictionar
 					definitionAnswerLabel.Content = $"The word \"{wordTextBox.Text.Trim()}\" could not be found in the dictionary";
 					imageImage.Source = null;
 				}
+
+				wordTextBox.SelectionStart = wordTextBox.Text.Length;
 			}
 		}
 	}

@@ -38,8 +38,8 @@ namespace Dictionar
 			Bad
 		}
 
-		public const string tick = "\u2714";
-		public const string x = "\u2716";
+		public const string GoodAnswer = "\u2714";
+		public const string BadAnswer = "\u2716";
 
 		public static Uri DefaultImageUri => new Uri(Path.GetFullPath(Properties.Settings.Default.DefaultImage));
 

@@ -162,17 +162,17 @@ namespace Dictionar.Pages
 			switch (kind)
 			{
 				case Utils.Debug.Good:
-					debugSymbol.Text = Utils.tick;
+					debugSymbol.Text = Utils.GoodAnswer;
 					debugSymbol.Foreground = Brushes.Green;
 					break;
 
 				case Utils.Debug.Bad:
-					debugSymbol.Text = Utils.x;
+					debugSymbol.Text = Utils.BadAnswer;
 					debugSymbol.Foreground = Brushes.Red;
 					break;
 
 				default:
-					debugSymbol.Text = Utils.x;
+					debugSymbol.Text = Utils.BadAnswer;
 					debugSymbol.Foreground = Brushes.Blue;
 					break;
 			}
