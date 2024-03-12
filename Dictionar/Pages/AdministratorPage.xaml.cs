@@ -89,6 +89,11 @@ namespace Dictionar.Pages
 				}
 				else
 				{
+					CurrentEntry.Definition = string.Empty;
+
+					// de ce e necesar daca am bind pe CurrentEntry.Definition?
+					definitionAnswerTextBox.Text = string.Empty;
+
 					imageImage.Source = null;
 
 					Debug(Utils.Debug.Bad, "Entry not found.");
