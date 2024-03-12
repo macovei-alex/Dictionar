@@ -4,17 +4,23 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Dictionar.Pages"
+      xmlns:converters="clr-namespace:Dictionar.Converters"
       xmlns:context="clr-namespace:Dictionar"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Width="800" Height="450"
       Title="AdministratorPage">
 
+    <Page.Resources>
+        <converters:NegativeValueConverter x:Key="NegativeValueConverter"/>
+        <converters:MultipleNegativeValuesConverter x:Key="MultiNegativeValuesConverter"/>
+    </Page.Resources>
+
     <Page.DataContext>
         <context:DictionaryEntryContext/>
     </Page.DataContext>
 
-    <Grid Margin="20, 10" Background="White">
+    <Grid x:Name="grid" Margin="20, 10" Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -29,25 +35,36 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
-        <Label Name="wordLabel" Grid.Row="0" Content="Your word:" FontSize="15" FontFamily="Consolas" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-        <Label Name="definitionLabel" Grid.Row="1" Content="Definition: " FontSize="15" FontFamily="Consolas" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-        <Label Name="imageLabel" Grid.Row="2" Content="Image: " FontSize="15" FontFamily="Consolas" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <Image Source="/Resources/Assets/BackgroundImage.jpg" Stretch="Fill" Grid.RowSpan="{Binding Path=RowDefinitions.Count, RelativeSource={RelativeSource AncestorType={x:Type Grid}}}" Grid.ColumnSpan="{Binding Path=ColumnDefinitions.Count, RelativeSource={RelativeSource AncestorType={x:Type Grid}}}">
+            <Image.Margin>
+                <MultiBinding Converter="{StaticResource MultiNegativeValuesConverter}">
+                    <Binding Path="Margin.Left" RelativeSource="{RelativeSource AncestorType={x:Type Grid}}" />
+                    <Binding Path="Margin.Top" RelativeSource="{RelativeSource AncestorType={x:Type Grid}}" />
+                    <Binding Path="Margin.Right" RelativeSource="{RelativeSource AncestorType={x:Type Grid}}" />
+                    <Binding Path="Margin.Bottom" RelativeSource="{RelativeSource AncestorType={x:Type Grid}}" />
+                </MultiBinding>
+            </Image.Margin>
+        </Image>
 
-        <TextBox Name="wordTextBox" Text="{Binding DictionaryEntry.Word, Mode=TwoWay}" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" FontSize="15" FontFamily="Consolas" VerticalAlignment="Center" HorizontalAlignment="Left" PreviewKeyDown="wordTextBox_PreviewKeyDown" Width="250"/>
-        <Border Name="definitionAnswerBorder" BorderThickness="2" BorderBrush="Black" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2">
-            <TextBox Name="definitionAnswerTextBox" Text="{Binding DictionaryEntry.Definition, Mode=TwoWay}" Grid.Column="1" Grid.Row="1" FontSize="15" FontFamily="Consolas" VerticalAlignment="Top" HorizontalAlignment="Left" TextWrapping="Wrap" Width="525px" Height="60px"/>
+        <Label Name="wordLabel" Grid.Row="0" Content="Your word:" FontSize="15" FontFamily="Consolas" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="AliceBlue"/>
+        <Label Name="definitionLabel" Grid.Row="1" Content="Definition: " FontSize="15" FontFamily="Consolas" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="AliceBlue"/>
+        <Label Name="imageLabel" Grid.Row="2" Content="Image: " FontSize="15" FontFamily="Consolas" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="AliceBlue"/>
+
+        <TextBox Name="wordTextBox" Text="{Binding DictionaryEntry.Word, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" FontSize="15" FontFamily="Consolas" VerticalAlignment="Center" HorizontalAlignment="Left" PreviewKeyDown="wordTextBox_PreviewKeyDown" Width="250" Background="AliceBlue"/>
+        <Border Name="definitionAnswerBorder" BorderThickness="2" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" BorderBrush="AliceBlue">
+            <TextBox Name="definitionAnswerTextBox" Text="{Binding DictionaryEntry.Definition, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="15" FontFamily="Consolas" VerticalAlignment="Top" HorizontalAlignment="Left" TextWrapping="Wrap" Width="535px" Height="60px" Background="AliceBlue"/>
         </Border>
         <Image Name="imageImage" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Width="500" HorizontalAlignment="Left"></Image>
 
-        <Button Name="changeImageButton" Grid.Row="2" Grid.Column="3" VerticalAlignment="Top" HorizontalContentAlignment="Center" Padding="5, 5" FontFamily="Consolas" FontSize="15" Width="100" Click="changeImageButton_Click" Margin="10, 5, 5, 5">
+        <Button Name="changeImageButton" Grid.Row="2" Grid.Column="3" VerticalAlignment="Top" HorizontalContentAlignment="Center" Padding="5, 5" FontFamily="Consolas" FontSize="15" Width="100" Click="changeImageButton_Click" Margin="10, 5, 5, 5" Background="AliceBlue">
             <TextBlock Text="Change the image" TextWrapping="Wrap"/>
         </Button>
 
         <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="4">
-            <Button Name="mainPageButton" Content="Go back" Padding="5" Margin="10" Click="mainPageButton_Click" HorizontalAlignment="Center" FontFamily="Consolas" FontSize="15"/>
-            <Button Name="saveButton" Content="Create/Update entry" Padding="5" Margin="10" Click="saveButton_Click" HorizontalAlignment="Center" FontFamily="Consolas" FontSize="15"/>
-            <Button Name="deleteButton" Content="Delete entry" Padding="5" Margin="10" HorizontalAlignment="Center" Click="deleteButton_Click" FontFamily="Consolas" FontSize="15"/>
-            <Label Name="debugLabel" Content="[no debug information]" Padding="5" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Consolas" FontSize="15"/>
+            <Button Name="mainPageButton" Content="Go back" Padding="5" Margin="10" Click="mainPageButton_Click" HorizontalAlignment="Center" FontFamily="Consolas" FontSize="15" Background="AliceBlue"/>
+            <Button Name="saveButton" Content="Create/Update entry" Padding="5" Margin="10" Click="saveButton_Click" HorizontalAlignment="Center" FontFamily="Consolas" FontSize="15" Background="AliceBlue"/>
+            <Button Name="deleteButton" Content="Delete entry" Padding="5" Margin="10" HorizontalAlignment="Center" Click="deleteButton_Click" FontFamily="Consolas" FontSize="15" Background="AliceBlue"/>
+            <Label Name="debugLabel" Content="[no debug information]" Padding="5" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Consolas" FontSize="15" Foreground="AliceBlue"/>
             <TextBlock Name="debugSymbol" Text="&#x2714;" Foreground="Green" FontFamily="Consolas" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </StackPanel>
     </Grid>

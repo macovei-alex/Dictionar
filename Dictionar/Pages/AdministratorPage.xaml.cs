@@ -24,6 +24,7 @@ namespace Dictionar.Pages
 	/// </summary>
 	public partial class AdministratorPage : Page
 	{
+		public BitmapImage DefaultImage { get; } = new BitmapImage(Utils.DefaultImageUri);
 		private MainWindow ParentWindow => Window.GetWindow(this) as MainWindow;
 		private Dictionary Dictionary => ParentWindow.Dictionary;
 		private DictionaryEntry CurrentEntry
@@ -41,7 +42,7 @@ namespace Dictionar.Pages
 		public AdministratorPage()
 		{
 			InitializeComponent();
-			CurrentEntry = DictionaryEntry.Empty;
+			CurrentEntry = new DictionaryEntry();
 		}
 
 		private void mainPageButton_Click(object sender, RoutedEventArgs e)
@@ -53,10 +54,9 @@ namespace Dictionar.Pages
 		{
 			if (e.Key == Key.Enter)
 			{
-				string text = wordTextBox.Text.Trim();
-				CurrentEntry = SafeSearch();
+				string word = string.Copy(wordTextBox.Text);
 
-				if (CurrentEntry != DictionaryEntry.Empty)
+				if ((CurrentEntry = SafeSearch()) != DictionaryEntry.Empty)
 				{
 					Debug(Utils.Debug.Good, "Entry found.");
 
@@ -66,9 +66,8 @@ namespace Dictionar.Pages
 							|| CurrentEntry.Image == string.Empty
 							|| CurrentEntry.Image == DictionaryEntry.DefaultImageString)
 						{
-							var bitmapImage = new BitmapImage(Utils.DefaultImageUri);
-							imageImage.Source = bitmapImage;
-							CurrentEntry.Image = Utils.GetBase64FromImage(bitmapImage);
+							imageImage.Source = DefaultImage;
+							CurrentEntry.Image = Utils.GetBase64FromImage(DefaultImage);
 
 							Debug(Utils.Debug.Bad, "No image found.", true);
 						}
@@ -81,16 +80,15 @@ namespace Dictionar.Pages
 					}
 					catch (Exception)
 					{
-						var bitmap = new BitmapImage(Utils.DefaultImageUri);
-						imageImage.Source = bitmap;
-						CurrentEntry.Image = Utils.GetBase64FromImage(bitmap);
+						imageImage.Source = DefaultImage;
+						CurrentEntry.Image = Utils.GetBase64FromImage(DefaultImage);
 
 						Debug(Utils.Debug.Bad, "Error loading image.", true);
 					}
 				}
 				else
 				{
-					CurrentEntry.Word = text;
+					CurrentEntry = new DictionaryEntry(word);
 					imageImage.Source = null;
 
 					Debug(Utils.Debug.Bad, "Entry not found.");
@@ -108,7 +106,7 @@ namespace Dictionar.Pages
 
 			if (fileDialog.ShowDialog() == true)
 			{
-				CurrentEntry = new DictionaryEntry(wordTextBox.Text.Trim());
+				CurrentEntry = new DictionaryEntry(CurrentEntry.Word);
 				imageImage.Source = Utils.GetImageFromBase64(CurrentEntry.Image);
 
 				Debug(Utils.Debug.Good, "Image uploaded.");
@@ -117,7 +115,7 @@ namespace Dictionar.Pages
 
 		private void saveButton_Click(object sender, RoutedEventArgs e)
 		{
-			if (Dictionary.Search(CurrentEntry.Word) == null)
+			if (SafeSearch() == DictionaryEntry.Empty)
 			{
 				CurrentEntry = new DictionaryEntry()
 				{
@@ -139,10 +137,10 @@ namespace Dictionar.Pages
 
 		private void deleteButton_Click(object sender, RoutedEventArgs e)
 		{
-			if ((CurrentEntry = SafeSearch()) != DictionaryEntry.Empty)
+			if (SafeSearch() != DictionaryEntry.Empty)
 			{
 				Dictionary.DeleteEntry(CurrentEntry);
-				CurrentEntry = DictionaryEntry.Empty;
+				CurrentEntry = new DictionaryEntry();
 				imageImage.Source = null;
 
 				Debug(Utils.Debug.Good, "Entry deleted.");
@@ -181,8 +179,7 @@ namespace Dictionar.Pages
 
 		private DictionaryEntry SafeSearch()
 		{
-			var entry = Dictionary.Search(wordTextBox.Text.Trim());
-			return entry ?? DictionaryEntry.Empty;
+			return Dictionary.Search(CurrentEntry.Word) ?? DictionaryEntry.Empty;
 		}
 	}
 }

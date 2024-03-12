@@ -61,7 +61,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\MultipleNegativeValuesConverter.cs" />
     <Compile Include="DictionaryEntryContext.cs" />
+    <Compile Include="Converters\NegativeValueConverter.cs" />
     <Compile Include="Pages\GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
     </Compile>
@@ -147,6 +149,12 @@
   <ItemGroup>
     <Folder Include="Resources\Words\a\" />
     <Folder Include="Resources\Words\b\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Assets\DefaultImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Assets\BackgroundImage.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -34,7 +34,7 @@ namespace Dictionar.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\Resources\\DefaultImage.png")]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\Resources\\Assets\\DefaultImage.png")]
         public string DefaultImage {
             get {
                 return ((string)(this["DefaultImage"]));
