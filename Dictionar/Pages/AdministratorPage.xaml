@@ -7,10 +7,9 @@
       xmlns:converters="clr-namespace:Dictionar.Converters"
       xmlns:context="clr-namespace:Dictionar"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
       Width="800" Height="450"
       Title="AdministratorPage">
-
+ 
     <Page.Resources>
         <converters:NegativeValueConverter x:Key="NegativeValueConverter"/>
         <converters:MultipleNegativeValuesConverter x:Key="MultiNegativeValuesConverter"/>
@@ -46,9 +45,9 @@
             </Image.Margin>
         </Image>
 
-        <Label Name="wordLabel" Grid.Row="0" Content="Your word:" FontSize="15" FontFamily="Consolas" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="AliceBlue"/>
-        <Label Name="definitionLabel" Grid.Row="1" Content="Definition: " FontSize="15" FontFamily="Consolas" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="AliceBlue"/>
-        <Label Name="imageLabel" Grid.Row="2" Content="Image: " FontSize="15" FontFamily="Consolas" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="AliceBlue"/>
+        <Label Name="wordLabel" Grid.Row="0" Content="Your word:" FontSize="15" FontFamily="Consolas" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="AliceBlue"/>
+        <Label Name="definitionLabel" Grid.Row="1" Content="Definition: " FontSize="15" FontFamily="Consolas" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="AliceBlue"/>
+        <Label Name="imageLabel" Grid.Row="2" Content="Image: " FontSize="15" FontFamily="Consolas" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="AliceBlue"/>
 
         <TextBox Name="wordTextBox" Text="{Binding DictionaryEntry.Word, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" FontSize="15" FontFamily="Consolas" VerticalAlignment="Center" HorizontalAlignment="Left" PreviewKeyDown="wordTextBox_PreviewKeyDown" Width="250" Background="AliceBlue"/>
         <Border Name="definitionAnswerBorder" BorderThickness="2" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" BorderBrush="AliceBlue">

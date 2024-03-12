@@ -4,10 +4,15 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Dictionar.Pages"
+      xmlns:converters="clr-namespace:Dictionar.Converters"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
       Width="800" Height="450"
       Title="AdministratorPage">
+
+    <Page.Resources>
+        <converters:NegativeValueConverter x:Key="NegativeValueConverter"/>
+        <converters:MultipleNegativeValuesConverter x:Key="MultiNegativeValuesConverter"/>
+    </Page.Resources>
 
     <Grid Margin="20, 10" Background="White">
         <Grid.RowDefinitions>
@@ -23,6 +28,17 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
+
+        <Image Source="/Resources/Assets/BackgroundImage.jpg" Stretch="Fill" Grid.RowSpan="{Binding Path=RowDefinitions.Count, RelativeSource={RelativeSource AncestorType={x:Type Grid}}}" Grid.ColumnSpan="{Binding Path=ColumnDefinitions.Count, RelativeSource={RelativeSource AncestorType={x:Type Grid}}}">
+            <Image.Margin>
+                <MultiBinding Converter="{StaticResource MultiNegativeValuesConverter}">
+                    <Binding Path="Margin.Left" RelativeSource="{RelativeSource AncestorType={x:Type Grid}}" />
+                    <Binding Path="Margin.Top" RelativeSource="{RelativeSource AncestorType={x:Type Grid}}" />
+                    <Binding Path="Margin.Right" RelativeSource="{RelativeSource AncestorType={x:Type Grid}}" />
+                    <Binding Path="Margin.Bottom" RelativeSource="{RelativeSource AncestorType={x:Type Grid}}" />
+                </MultiBinding>
+            </Image.Margin>
+        </Image>
 
         <Label Name="wordLabel" Grid.Row="0" Content="Your word:" FontSize="15" FontFamily="Consolas" VerticalAlignment="Center" HorizontalAlignment="Left"/>
         <Label Name="definitionLabel" Grid.Row="1" Content="Definition: " FontSize="15" FontFamily="Consolas" VerticalAlignment="Center" HorizontalAlignment="Left"/>

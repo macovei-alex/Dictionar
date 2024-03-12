@@ -40,6 +40,7 @@ namespace Dictionar
 		public void SwapPage(string pageName)
 		{
 			MainFrame.Navigate(new Uri($"Pages\\{pageName}.xaml", UriKind.Relative));
+			this.Title = $"Dictionary/{pageName}";
 		}
 	}
 }

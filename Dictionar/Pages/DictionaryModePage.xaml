@@ -37,9 +37,9 @@
             </Image.Margin>
         </Image>
 
-        <Label Name="wordLabel" Grid.Row="0" Content="Your word:" FontSize="15" FontFamily="Consolas" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="AliceBlue"/>
+        <Label Name="wordLabel" Grid.Row="0" Content="Your word:" FontSize="15" FontFamily="Consolas" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="AliceBlue"/>
         <Label Name="definitionLabel" Grid.Row="1" Content="Definition: " FontSize="15" FontFamily="Consolas" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="AliceBlue"/>
-        <Label Name="imageLabel" Grid.Row="2" Content="Image: " FontSize="15" FontFamily="Consolas" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="AliceBlue"/>
+        <Label Name="imageLabel" Grid.Row="2" Content="Image: " FontSize="15" FontFamily="Consolas" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="AliceBlue"/>
 
         <TextBox Name="wordTextBox" Grid.Row="0" Grid.Column="1" FontSize="15" FontFamily="Consolas" VerticalAlignment="Center" HorizontalAlignment="Left" PreviewKeyDown="wordTextBox_PreviewKeyDown" Width="535" Background="AliceBlue"/>
         <Border Name="definitionAnswerBorder" BorderThickness="2" BorderBrush="AliceBlue" Grid.Column="1" Grid.Row="1">

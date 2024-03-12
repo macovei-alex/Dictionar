@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Dictionar"
         mc:Ignorable="d"
-        Title="MainWindow"
+        Title="Dictionary"
         Width="{Binding ElementName=MainFrame, Path=Width}"
         Height="{Binding ElementName=MainFrame, Path=Height}">
     <Grid>
