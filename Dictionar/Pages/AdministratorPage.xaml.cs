@@ -93,6 +93,8 @@ namespace Dictionar.Pages
 
 					Debug(Utils.Debug.Bad, "Entry not found.");
 				}
+
+				wordTextBox.SelectionStart = wordTextBox.Text.Length;
 			}
 		}
 
