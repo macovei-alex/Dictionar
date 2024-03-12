@@ -4,9 +4,14 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Dictionar.Pages"
+      xmlns:converters="clr-namespace:Dictionar.Converters"
       mc:Ignorable="d" 
       Title="MainPage"
       Width="400" Height="450">
+
+    <Page.Resources>
+        <converters:MultipleNegativeValuesConverter x:Key="MultiNegativeValuesConverter"/>
+    </Page.Resources>
 
     <Grid Margin="50, 100" Background="White">
         <Grid.RowDefinitions>
@@ -16,9 +21,20 @@
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
 
-        <Label Name="selectModeLabel" Content="Please select a mode:" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="15" FontFamily="Consolas"/>
-        <Button Name="dictionaryButton" Content="Dictionary mode" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Consolas" Padding="10, 5" MinWidth="250" Click="dictionaryButton_Click"/>
-        <Button Name="administratorButton" Content="Administrator mode" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Consolas" Padding="10, 5" MinWidth="250" Click="administratorButton_Click"/>
-        <Button Name="gameButton"  Content="Game mode" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Consolas" Padding="10, 5" MinWidth="250" Click="gameButton_Click"/>
+        <Image Source="/Resources/Assets/BackgroundImage.jpg" Stretch="Fill" Grid.RowSpan="{Binding Path=RowDefinitions.Count, RelativeSource={RelativeSource AncestorType={x:Type Grid}}}" Grid.ColumnSpan="{Binding Path=ColumnDefinitions.Count, RelativeSource={RelativeSource AncestorType={x:Type Grid}}}">
+            <Image.Margin>
+                <MultiBinding Converter="{StaticResource MultiNegativeValuesConverter}">
+                    <Binding Path="Margin.Left" RelativeSource="{RelativeSource AncestorType={x:Type Grid}}" />
+                    <Binding Path="Margin.Top" RelativeSource="{RelativeSource AncestorType={x:Type Grid}}" />
+                    <Binding Path="Margin.Right" RelativeSource="{RelativeSource AncestorType={x:Type Grid}}" />
+                    <Binding Path="Margin.Bottom" RelativeSource="{RelativeSource AncestorType={x:Type Grid}}" />
+                </MultiBinding>
+            </Image.Margin>
+        </Image>
+
+        <Label Name="selectModeLabel" Content="Please select a mode:" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="15" FontFamily="Consolas" Foreground="AliceBlue"/>
+        <Button Name="dictionaryButton" Content="Dictionary mode" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Consolas" Padding="10, 5" MinWidth="250" Click="dictionaryButton_Click" Background="AliceBlue"/>
+        <Button Name="administratorButton" Content="Administrator mode" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Consolas" Padding="10, 5" MinWidth="250" Click="administratorButton_Click" Background="AliceBlue"/>
+        <Button Name="gameButton"  Content="Game mode" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Consolas" Padding="10, 5" MinWidth="250" Click="gameButton_Click" Background="AliceBlue"/>
     </Grid>
 </Page>

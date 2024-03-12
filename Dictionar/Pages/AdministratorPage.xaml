@@ -20,7 +20,7 @@
         <context:DictionaryEntryContext/>
     </Page.DataContext>
 
-    <Grid x:Name="grid" Margin="20, 10" Background="White">
+    <Grid x:Name="grid" Margin="20, 10">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>

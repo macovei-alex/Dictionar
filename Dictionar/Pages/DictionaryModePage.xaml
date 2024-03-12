@@ -4,9 +4,14 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Dictionar"
+      xmlns:converters="clr-namespace:Dictionar.Converters"
       mc:Ignorable="d"
       Title="DictionaryModePage"
       Width="800" Height="450">
+
+    <Page.Resources>
+        <converters:MultipleNegativeValuesConverter x:Key="MultiNegativeValuesConverter"/>
+    </Page.Resources>
 
     <Grid Margin="20, 10" Background="White">
         <Grid.RowDefinitions>
@@ -21,16 +26,27 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Label Name="wordLabel" Grid.Row="0" Content="Your word:" FontSize="15" FontFamily="Consolas" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-        <Label Name="definitionLabel" Grid.Row="1" Content="Definition: " FontSize="15" FontFamily="Consolas" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-        <Label Name="imageLabel" Grid.Row="2" Content="Image: " FontSize="15" FontFamily="Consolas" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <Image Source="/Resources/Assets/BackgroundImage.jpg" Stretch="Fill" Grid.RowSpan="{Binding Path=RowDefinitions.Count, RelativeSource={RelativeSource AncestorType={x:Type Grid}}}" Grid.ColumnSpan="{Binding Path=ColumnDefinitions.Count, RelativeSource={RelativeSource AncestorType={x:Type Grid}}}">
+            <Image.Margin>
+                <MultiBinding Converter="{StaticResource MultiNegativeValuesConverter}">
+                    <Binding Path="Margin.Left" RelativeSource="{RelativeSource AncestorType={x:Type Grid}}" />
+                    <Binding Path="Margin.Top" RelativeSource="{RelativeSource AncestorType={x:Type Grid}}" />
+                    <Binding Path="Margin.Right" RelativeSource="{RelativeSource AncestorType={x:Type Grid}}" />
+                    <Binding Path="Margin.Bottom" RelativeSource="{RelativeSource AncestorType={x:Type Grid}}" />
+                </MultiBinding>
+            </Image.Margin>
+        </Image>
 
-        <TextBox Name="wordTextBox" Grid.Row="0" Grid.Column="1" FontSize="15" FontFamily="Consolas" VerticalAlignment="Center" HorizontalAlignment="Left" PreviewKeyDown="wordTextBox_PreviewKeyDown" Width="250"/>
-        <Border Name="definitionAnswerBorder" BorderThickness="2" BorderBrush="Black" Grid.Column="1" Grid.Row="1">
-            <Label Name="definitionAnswerLabel" Content="" Grid.Column="1" Grid.Row="1" FontSize="15" FontFamily="Consolas" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <Label Name="wordLabel" Grid.Row="0" Content="Your word:" FontSize="15" FontFamily="Consolas" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="AliceBlue"/>
+        <Label Name="definitionLabel" Grid.Row="1" Content="Definition: " FontSize="15" FontFamily="Consolas" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="AliceBlue"/>
+        <Label Name="imageLabel" Grid.Row="2" Content="Image: " FontSize="15" FontFamily="Consolas" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="AliceBlue"/>
+
+        <TextBox Name="wordTextBox" Grid.Row="0" Grid.Column="1" FontSize="15" FontFamily="Consolas" VerticalAlignment="Center" HorizontalAlignment="Left" PreviewKeyDown="wordTextBox_PreviewKeyDown" Width="535" Background="AliceBlue"/>
+        <Border Name="definitionAnswerBorder" BorderThickness="2" BorderBrush="AliceBlue" Grid.Column="1" Grid.Row="1">
+            <Label Name="definitionAnswerLabel" Content="" Grid.Column="1" Grid.Row="1" FontSize="15" FontFamily="Consolas" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="AliceBlue"/>
         </Border>
         <Image Name="imageImage" Grid.Row="2" Grid.Column="1" Width="400" HorizontalAlignment="Left"></Image>
 
-        <Button Name="mainPageButton" Content="Go back" Grid.Row="3" Click="mainPageButton_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5, 5"/>
+        <Button Name="mainPageButton" Content="Go back" Grid.Row="3" Click="mainPageButton_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5, 5" Background="AliceBlue"/>
     </Grid>
 </Page>
