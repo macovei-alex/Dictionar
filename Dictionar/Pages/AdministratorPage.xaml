@@ -57,7 +57,7 @@
         <Image Name="imageImage" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Width="500" HorizontalAlignment="Left"></Image>
 
         <Button Name="changeImageButton" Grid.Row="2" Grid.Column="3" VerticalAlignment="Top" HorizontalContentAlignment="Center" Padding="5, 5" FontFamily="Consolas" FontSize="15" Width="100" Click="changeImageButton_Click" Margin="10, 5, 5, 5" Background="AliceBlue">
-            <TextBlock Text="Change the image" TextWrapping="Wrap"/>
+            <TextBlock Text="Change the image" TextWrapping="Wrap" TextAlignment="Center"/>
         </Button>
 
         <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="4">
