@@ -13,7 +13,7 @@ using Dictionar.DataHandling;
 
 namespace Dictionar
 {
-	public class Utils
+	public static class Utils
 	{
 		public enum Pages
 		{
@@ -38,12 +38,12 @@ namespace Dictionar
 			Bad
 		}
 
-		public const string GoodAnswer = "\u2714";
-		public const string BadAnswer = "\u2716";
+		public static string GoodAnswer { get; } = "\u2714";
+		public static string BadAnswer { get; } = "\u2716";
 
-		public static Uri DefaultImageUri => new Uri(Path.GetFullPath(Properties.Settings.Default.DefaultImage));
+		public static Uri DefaultImageUri { get; } = new Uri(Path.GetFullPath(Properties.Settings.Default.DefaultImage));
 
-		public static string FullWordsDirectory => Path.GetFullPath(Properties.Settings.Default.WordsDirectory);
+		public static string FullWordsDirectory { get; } = Path.GetFullPath(Properties.Settings.Default.WordsDirectory);
 
 		public static Dictionary<Pages, string> PageMap { get; } = new Dictionary<Pages, string>
 		{
