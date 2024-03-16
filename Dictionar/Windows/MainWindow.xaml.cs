@@ -21,7 +21,7 @@ namespace Dictionar
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		public Dictionary Dictionary { get; private set; }
+		public Dictionary Dictionary { get; }
 
 		public MainWindow()
 		{

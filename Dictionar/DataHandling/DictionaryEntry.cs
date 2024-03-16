@@ -9,7 +9,7 @@ namespace Dictionar.DataHandling
 {
 	public class DictionaryEntry : FileEntry
 	{
-		public static string DefaultImageString { get => "default"; }
+		public static string DefaultImageString => "default";
 		public static DictionaryEntry Empty { get; } = new DictionaryEntry();
 
 		public override string Key

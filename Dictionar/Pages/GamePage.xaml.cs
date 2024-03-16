@@ -24,16 +24,31 @@ namespace Dictionar.Pages
 	/// </summary>
 	public partial class GamePage : Page
 	{
+		private enum HintType
+		{
+			Definition,
+			Image
+		}
+
 		private MainWindow ParentWindow => Window.GetWindow(this) as MainWindow;
 		private Dictionary Dictionary => ParentWindow.Dictionary;
-		private DictionaryEntry CurrentEntry { get; set; }
+		private Random Random { get; }
+
+		/*private Tuple<DictionaryEntry, HintType>[] Entries { get; }
+		private string[] Guesses { get; }*/
 
 		public GamePage()
 		{
 			InitializeComponent();
+			Random = new Random();
 		}
 
-		private void mainPageButton_Click(object sender, RoutedEventArgs e)
+		private void Page_Loaded(object sender, RoutedEventArgs e)
+		{
+			GenerateNewHint();
+		}
+
+		private void leaveGameButton_Click(object sender, RoutedEventArgs e)
 		{
 			ParentWindow.SwapPage(Utils.Pages.MainPage);
 		}
@@ -42,139 +57,64 @@ namespace Dictionar.Pages
 		{
 			if (e.Key == Key.Enter)
 			{
-				CurrentEntry = Dictionary.Random();
-				if (CurrentEntry != null)
+				GenerateNewHint();
+			}
+		}
+
+		private void previousQuestionButton_Click(object sender, RoutedEventArgs e)
+		{
+		}
+
+		private void nextQuestionButton_Click(object sender, RoutedEventArgs e)
+		{
+		}
+
+		private void GenerateNewHint()
+		{
+			var entry = Dictionary.Random();
+			definitionAnswerTextBox.Text = entry.Definition;
+
+			try
+			{
+				if (entry.Image == null
+					|| entry.Image == string.Empty
+					|| entry.Image == DictionaryEntry.DefaultImageString)
 				{
-					definitionAnswerTextBox.Text = CurrentEntry.Definition;
-
-					Debug(Utils.Debug.Good, "Entry found.");
-
-					try
-					{
-						if (CurrentEntry.Image == null
-							|| CurrentEntry.Image == string.Empty
-							|| CurrentEntry.Image == DictionaryEntry.DefaultImageString)
-						{
-							var bitmapImage = new BitmapImage(Utils.DefaultImageUri);
-							imageImage.Source = bitmapImage;
-							CurrentEntry.Image = Utils.GetBase64FromImage(bitmapImage);
-
-							Debug(Utils.Debug.Bad, "No image found.", true);
-						}
-						else
-						{
-							imageImage.Source = Utils.GetImageFromBase64(CurrentEntry.Image);
-
-							Debug(Utils.Debug.Good, "Image found.", true);
-						}
-					}
-					catch (Exception)
-					{
-						var bitmap = new BitmapImage(Utils.DefaultImageUri);
-						imageImage.Source = bitmap;
-						CurrentEntry.Image = Utils.GetBase64FromImage(bitmap);
-
-						Debug(Utils.Debug.Bad, "Error loading image.", true);
-					}
+					SetHint(entry, HintType.Definition);
 				}
 				else
 				{
-					CurrentEntry = new DictionaryEntry(wordTextBox.Text.Trim());
-					definitionAnswerTextBox.Text = string.Empty;
-					imageImage.Source = null;
-
-					Debug(Utils.Debug.Bad, "Entry not found.");
+					if (Random.Next(0, 2) == 0)
+					{
+						SetHint(entry, HintType.Definition);
+					}
+					else
+					{
+						SetHint(entry, HintType.Image);
+					}
 				}
 			}
-		}
-
-		private void changeImageButton_Click(object sender, RoutedEventArgs e)
-		{
-			FileDialog fileDialog = new OpenFileDialog
+			catch (Exception exception)
 			{
-				Filter = "Image files (*.png;*.jpeg;*.jpg)|*.png;*.jpeg;*.jpg",
-				InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures)
-			};
-
-			if (fileDialog.ShowDialog() == true)
-			{
-				if (CurrentEntry == null)
-				{
-					CurrentEntry = new DictionaryEntry(wordTextBox.Text.Trim());
-				}
-
-				CurrentEntry.Image = Convert.ToBase64String(File.ReadAllBytes(fileDialog.FileName));
-				imageImage.Source = Utils.GetImageFromBase64(CurrentEntry.Image);
-
-				Debug(Utils.Debug.Good, "Image uploaded.");
+				throw exception;
 			}
 		}
 
-		private void saveButton_Click(object sender, RoutedEventArgs e)
+		private void SetHint(DictionaryEntry entry, HintType type)
 		{
-			if (CurrentEntry == null || Dictionary.Search(CurrentEntry.Word) == null)
+			if (type == HintType.Definition)
 			{
-				CurrentEntry = new DictionaryEntry()
-				{
-					Word = wordTextBox.Text.Trim(),
-					Definition = definitionAnswerTextBox.Text.Trim(),
-					Image = Utils.GetBase64FromImage(imageImage.Source as BitmapImage)
-				};
-				Dictionary.CreateEntry(CurrentEntry);
+				definitionAnswerTextBox.Visibility = Visibility.Visible;
+				definitionAnswerTextBox.Text = entry.Definition;
 
-				Debug(Utils.Debug.Good, "Entry created.");
+				imageImage.Visibility = Visibility.Hidden;
 			}
-			else
+			else if (type == HintType.Image)
 			{
-				CurrentEntry.Definition = definitionAnswerTextBox.Text.Trim();
-				Dictionary.UpdateEntry(CurrentEntry);
+				definitionAnswerTextBox.Visibility = Visibility.Hidden;
 
-				Debug(Utils.Debug.Good, "Entry updated.");
-			}
-		}
-
-		private void deleteButton_Click(object sender, RoutedEventArgs e)
-		{
-			if (CurrentEntry != null && (CurrentEntry = Dictionary.Search(CurrentEntry.Word)) != null)
-			{
-				Dictionary.DeleteEntry(CurrentEntry);
-				CurrentEntry = null;
-
-				wordTextBox.Text = string.Empty;
-				definitionAnswerTextBox.Text = string.Empty;
-				imageImage.Source = null;
-
-				Debug(Utils.Debug.Good, "Entry deleted.");
-			}
-		}
-
-		private void Debug(Utils.Debug kind, string info, bool append = false)
-		{
-			if (append)
-			{
-				debugLabel.Content = debugLabel.Content + " " + info;
-			}
-			else
-			{
-				debugLabel.Content = info;
-			}
-
-			switch (kind)
-			{
-				case Utils.Debug.Good:
-					debugSymbol.Text = Utils.GoodAnswer;
-					debugSymbol.Foreground = Brushes.Green;
-					break;
-
-				case Utils.Debug.Bad:
-					debugSymbol.Text = Utils.BadAnswer;
-					debugSymbol.Foreground = Brushes.Red;
-					break;
-
-				default:
-					debugSymbol.Text = Utils.BadAnswer;
-					debugSymbol.Foreground = Brushes.Blue;
-					break;
+				imageImage.Visibility = Visibility.Visible;
+				imageImage.Source = Utils.GetImageFromBase64(entry.Image);
 			}
 		}
 	}

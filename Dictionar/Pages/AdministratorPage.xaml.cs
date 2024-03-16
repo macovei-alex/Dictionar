@@ -24,7 +24,7 @@ namespace Dictionar.Pages
 	/// </summary>
 	public partial class AdministratorPage : Page
 	{
-		public BitmapImage DefaultImage { get; } = new BitmapImage(Utils.DefaultImageUri);
+		public BitmapImage DefaultImage { get; }
 		private MainWindow ParentWindow => Window.GetWindow(this) as MainWindow;
 		private Dictionary Dictionary => ParentWindow.Dictionary;
 		private DictionaryEntry CurrentEntry
@@ -43,6 +43,7 @@ namespace Dictionar.Pages
 		{
 			InitializeComponent();
 			CurrentEntry = new DictionaryEntry();
+			DefaultImage = new BitmapImage(Utils.DefaultImageUri);
 		}
 
 		private void mainPageButton_Click(object sender, RoutedEventArgs e)
