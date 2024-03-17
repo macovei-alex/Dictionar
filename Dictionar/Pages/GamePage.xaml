@@ -63,11 +63,11 @@
 
         <Label Name="hintTypeLabel" Style="{StaticResource labelStyle}" Grid.Row="0" Content="Hint: " VerticalAlignment="Center" HorizontalAlignment="Center"/>
         <Label Name="wordLabel" Style="{StaticResource labelStyle}" Grid.Row="1" Content="Your guess:" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-        
+
+        <Border Name="definitionAnswerBorder" BorderThickness="2" BorderBrush="Black" Grid.Column="1">
+            <TextBlock Name="definitionAnswerTextBox" Style="{StaticResource textBlockStyle}" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Border}}}" Height="{Binding Path=ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type Border}}}"/>
+        </Border>
         <TextBox Name="wordTextBox" Style="{StaticResource textBoxStyle}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" PreviewKeyDown="wordTextBox_PreviewKeyDown" Width="250"/>
-		<Border Name="definitionAnswerBorder" BorderThickness="2" BorderBrush="Black" Grid.Column="1">
-            <TextBlock Name="definitionAnswerTextBox" Style="{StaticResource textBlockStyle}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center" TextWrapping="Wrap" Width="400"/>
-		</Border>
         <Image Name="imageImage" Grid.Row="0" Grid.Column="1" Width="400" HorizontalAlignment="Left"></Image>
 
         <UniformGrid Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Rows="1">
