@@ -21,7 +21,8 @@ namespace Dictionar
 			MainPage,
 			DictionaryModePage,
 			AdministratorPage,
-			GamePage
+			GamePage,
+			GameResultsPage
 		};
 
 		public enum Windows
@@ -50,7 +51,8 @@ namespace Dictionar
 			{ Pages.MainPage, "MainPage" },
 			{ Pages.DictionaryModePage, "DictionaryModePage" },
 			{ Pages.AdministratorPage, "AdministratorPage" },
-			{ Pages.GamePage, "GamePage" }
+			{ Pages.GamePage, "GamePage" },
+			{ Pages.GameResultsPage, "GameResultsPage" }
 		};
 
 		public static Dictionary<Windows, string> WindowMap { get; } = new Dictionary<Windows, string>

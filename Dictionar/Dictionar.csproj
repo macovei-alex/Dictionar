@@ -61,6 +61,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\StringEqualityColorConveter.cs" />
+    <Compile Include="StringMatrixContext.cs" />
     <Compile Include="Converters\MultipleNegativeValuesConverter.cs" />
     <Compile Include="DictionaryEntryContext.cs" />
     <Compile Include="Converters\NegativeValueConverter.cs" />
@@ -69,6 +71,9 @@
     </Compile>
     <Compile Include="Pages\AdministratorPage.xaml.cs">
       <DependentUpon>AdministratorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\GameResultsPage.xaml.cs">
+      <DependentUpon>GameResultsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\TextInputWindow.xaml.cs">
       <DependentUpon>TextInputWindow.xaml</DependentUpon>
@@ -83,6 +88,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\DictionaryModePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\GameResultsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

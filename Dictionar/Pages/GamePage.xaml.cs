@@ -160,9 +160,17 @@ namespace Dictionar.Pages
 
 			if (QuestionCounter == QUESTION_COUNT)
 			{
-				// TODO: Show the score
+				string[][] informationMatrix = new string[QuestionCounter][];
+				for (int i = 0; i < QuestionCounter; i++)
+				{
+					informationMatrix[i] = new string[2];
+					informationMatrix[i][0] = Guesses[i].ToLower();
+					informationMatrix[i][1] = Entries[i].Item1.Word.ToLower();
+				}
 
-				ParentWindow.SwapPage(Utils.Pages.MainPage);
+				GameResultsPage gameResultsPage = new GameResultsPage(informationMatrix);
+				ParentWindow.MainFrame.Navigate(gameResultsPage);
+
 				return;
 			}
 

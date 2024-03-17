@@ -10,7 +10,6 @@ namespace Dictionar
 {
 	public class DictionaryEntryContext : INotifyPropertyChanged
 	{
-		public static DictionaryEntryContext Empty { get; } = new DictionaryEntryContext(DictionaryEntry.Empty);
 		public event PropertyChangedEventHandler PropertyChanged;
 
 		private DictionaryEntry _dictionaryEntry;
