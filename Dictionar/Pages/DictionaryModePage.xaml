@@ -13,7 +13,7 @@
         <converters:MultipleNegativeValuesConverter x:Key="MultiNegativeValuesConverter"/>
     </Page.Resources>
 
-    <Grid Margin="20, 10" Background="White">
+    <Grid Margin="20, 10">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
