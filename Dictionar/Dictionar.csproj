@@ -61,11 +61,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Converters\StringEqualityColorConveter.cs" />
     <Compile Include="StringMatrixContext.cs" />
     <Compile Include="Converters\MultipleNegativeValuesConverter.cs" />
     <Compile Include="DictionaryEntryContext.cs" />
-    <Compile Include="Converters\NegativeValueConverter.cs" />
     <Compile Include="Pages\GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
     </Compile>

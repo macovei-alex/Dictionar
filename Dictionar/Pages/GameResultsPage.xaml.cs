@@ -23,32 +23,28 @@ namespace Dictionar.Pages
 	{
 		private MainWindow ParentWindow => Window.GetWindow(this) as MainWindow;
 
-		private StringMatrixContext MatrixContext
-		{
-			get { return DataContext as StringMatrixContext; }
-			set { DataContext = value; }
-		}
+		private Tuple<string, string>[] QuizResults { get; set; }
 
-		public GameResultsPage(string[][] informationMatrix)
+		public GameResultsPage(Tuple<string, string>[] quizResults)
 		{
 			InitializeComponent();
 
-			MatrixContext.Matrix = informationMatrix;
+			QuizResults = quizResults;
 		}
 
 		private void Page_Loaded(object sender, RoutedEventArgs e)
 		{
 			int score = 0;
 
-			for (int i = 0; i < MatrixContext.Matrix.Length; i++)
+			for (int i = 0; i < QuizResults.Length; i++)
 			{
 				var guessTextBlock = (TextBlock)FindName($"answer{i}");
 				var expectedTextBlock = (TextBlock)FindName($"expected{i}");
 
-				guessTextBlock.Text = MatrixContext[i][0];
-				expectedTextBlock.Text = MatrixContext[i][1];
+				guessTextBlock.Text = QuizResults[i].Item1;
+				expectedTextBlock.Text = QuizResults[i].Item2;
 
-				if (MatrixContext[i][0] == MatrixContext[i][1])
+				if (QuizResults[i].Item1 == QuizResults[i].Item2)
 				{
 					score++;
 					guessTextBlock.Background = Brushes.LightGreen;

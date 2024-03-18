@@ -5,17 +5,11 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Dictionar.Pages"
       xmlns:converters="clr-namespace:Dictionar.Converters"
-      xmlns:context="clr-namespace:Dictionar"
       mc:Ignorable="d"
       Width="400" Height="450"
       Title="GameResultsPage" Loaded="Page_Loaded">
 
-    <Page.DataContext>
-        <context:StringMatrixContext/>
-    </Page.DataContext>
-
     <Page.Resources>
-        <converters:NegativeValueConverter x:Key="NegativeValueConverter"/>
         <converters:MultipleNegativeValuesConverter x:Key="MultiNegativeValuesConverter"/>
         
         <Style x:Key="textBlockStyle" TargetType="TextBlock">
@@ -82,8 +76,8 @@
             <TextBlock Name="answer0" Grid.Row="1" Grid.Column="0" Style="{StaticResource textBlockStyle}"/>
             <TextBlock Name="answer1" Grid.Row="2" Grid.Column="0" Style="{StaticResource textBlockStyle}"/>
             <TextBlock Name="answer2" Grid.Row="3" Grid.Column="0" Style="{StaticResource textBlockStyle}"/>
-            <TextBlock Name="answer3" Grid.Row="4" Grid.Column="0" Style="{StaticResource textBlockStyle}" Text="{Binding Matrix[3][0], Mode=TwoWay}"/>
-            <TextBlock Name="answer4" Grid.Row="5" Grid.Column="0" Style="{StaticResource textBlockStyle}" Text="{Binding Matrix[4][0], Mode=TwoWay}"/>
+            <TextBlock Name="answer3" Grid.Row="4" Grid.Column="0" Style="{StaticResource textBlockStyle}"/>
+            <TextBlock Name="answer4" Grid.Row="5" Grid.Column="0" Style="{StaticResource textBlockStyle}"/>
 
             <TextBlock Name="expected0" Grid.Row="1" Grid.Column="1" Style="{StaticResource textBlockStyle}"/>
             <TextBlock Name="expected1" Grid.Row="2" Grid.Column="1" Style="{StaticResource textBlockStyle}"/>

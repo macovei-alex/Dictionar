@@ -160,15 +160,13 @@ namespace Dictionar.Pages
 
 			if (QuestionCounter == QUESTION_COUNT)
 			{
-				string[][] informationMatrix = new string[QuestionCounter][];
+				Tuple<string, string>[] quizResults = new Tuple<string, string>[QUESTION_COUNT];
 				for (int i = 0; i < QuestionCounter; i++)
 				{
-					informationMatrix[i] = new string[2];
-					informationMatrix[i][0] = Guesses[i].ToLower();
-					informationMatrix[i][1] = Entries[i].Item1.Word.ToLower();
+					quizResults[i] = new Tuple<string, string>(Guesses[i].ToLower(), Entries[i].Item1.Word.ToLower());
 				}
 
-				GameResultsPage gameResultsPage = new GameResultsPage(informationMatrix);
+				GameResultsPage gameResultsPage = new GameResultsPage(quizResults);
 				ParentWindow.MainFrame.Navigate(gameResultsPage);
 
 				return;

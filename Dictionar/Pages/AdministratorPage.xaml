@@ -9,9 +9,8 @@
       mc:Ignorable="d" 
       Width="800" Height="450"
       Title="AdministratorPage">
- 
+
     <Page.Resources>
-        <converters:NegativeValueConverter x:Key="NegativeValueConverter"/>
         <converters:MultipleNegativeValuesConverter x:Key="MultiNegativeValuesConverter"/>
     </Page.Resources>
 
