@@ -11,16 +11,17 @@ namespace Dictionar.DataHandling
 	public class FileSystemDataSource<T> : IDataSource<T> where T : FileEntry
 	{
 		public string DirectoryPath { get; set; }
-		private bool _directoriesCleaned;
-		private readonly Random _random;
+
+		private bool DirectoriesCleaned { get; set; }
+		private Random RNG { get; }
 
 		public FileSystemDataSource(string directoryPath)
 		{
 			DirectoryPath = directoryPath;
 
 			CleanDirectories();
-			_directoriesCleaned = true;
-			_random = new Random();
+			DirectoriesCleaned = true;
+			RNG = new Random();
 		}
 
 		public void CreateEntry(T entry)
@@ -119,7 +120,7 @@ namespace Dictionar.DataHandling
 
 				File.Delete(path);
 
-				_directoriesCleaned = false;
+				DirectoriesCleaned = false;
 			}
 			catch (Exception exception)
 			{
@@ -133,7 +134,7 @@ namespace Dictionar.DataHandling
 			{
 				DeleteEntry(Activator.CreateInstance(typeof(T), key) as T);
 
-				_directoriesCleaned = false;
+				DirectoriesCleaned = false;
 			}
 			catch (Exception exception)
 			{
@@ -143,19 +144,18 @@ namespace Dictionar.DataHandling
 
 		public T RandomEntry()
 		{
-			if (_directoriesCleaned == false)
+			if (DirectoriesCleaned == false)
 			{
 				CleanDirectories();
-				_directoriesCleaned = true;
 			}
 
 			try
 			{
 				string[] collections = Directory.GetDirectories(DirectoryPath);
-				string collection = collections[_random.Next(0, collections.Length)];
+				string collection = collections[RNG.Next(0, collections.Length)];
 
 				string[] files = Directory.GetFiles(collection);
-				string file = files[_random.Next(0, files.Length)];
+				string file = files[RNG.Next(0, files.Length)];
 
 				string entryPath = Path.Combine(DirectoryPath, collection, file);
 
@@ -171,11 +171,25 @@ namespace Dictionar.DataHandling
 		{
 			foreach (var collectionDirectory in Directory.GetDirectories(DirectoryPath))
 			{
+				foreach (var filePath in Directory.GetFiles(collectionDirectory))
+				{
+					try
+					{
+						var fileName = Path.GetFileNameWithoutExtension(filePath);
+						ReadEntry(fileName);
+					}
+					catch (Exception)
+					{
+						File.Delete(filePath);
+					}
+				}
+
 				if (Directory.GetFiles(collectionDirectory).Length == 0)
 				{
 					Directory.Delete(collectionDirectory);
 				}
 			}
+			DirectoriesCleaned = true;
 		}
 	}
 }

@@ -79,17 +79,17 @@
 
             <TextBlock Text="Correct answers:" Foreground="AliceBlue" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Consolas" FontSize="15" Grid.Column="1" Padding="10, 10, 10, 20"/>
 
-            <TextBlock Name="answer0" Grid.Row="1" Grid.Column="0" Style="{StaticResource textBlockStyle}" Text="{Binding Matrix[0][0], Mode=TwoWay}"/>
-            <TextBlock Name="answer1" Grid.Row="2" Grid.Column="0" Style="{StaticResource textBlockStyle}" Text="{Binding Matrix[1][0], Mode=TwoWay}"/>
-            <TextBlock Name="answer2" Grid.Row="3" Grid.Column="0" Style="{StaticResource textBlockStyle}" Text="{Binding Matrix[2][0], Mode=TwoWay}"/>
+            <TextBlock Name="answer0" Grid.Row="1" Grid.Column="0" Style="{StaticResource textBlockStyle}"/>
+            <TextBlock Name="answer1" Grid.Row="2" Grid.Column="0" Style="{StaticResource textBlockStyle}"/>
+            <TextBlock Name="answer2" Grid.Row="3" Grid.Column="0" Style="{StaticResource textBlockStyle}"/>
             <TextBlock Name="answer3" Grid.Row="4" Grid.Column="0" Style="{StaticResource textBlockStyle}" Text="{Binding Matrix[3][0], Mode=TwoWay}"/>
             <TextBlock Name="answer4" Grid.Row="5" Grid.Column="0" Style="{StaticResource textBlockStyle}" Text="{Binding Matrix[4][0], Mode=TwoWay}"/>
 
-            <TextBlock Name="expected0" Grid.Row="1" Grid.Column="1" Style="{StaticResource textBlockStyle}" Text="{Binding Matrix[0][1], Mode=TwoWay}"/>
-            <TextBlock Name="expected1" Grid.Row="2" Grid.Column="1" Style="{StaticResource textBlockStyle}" Text="{Binding Matrix[1][1], Mode=TwoWay}"/>
-            <TextBlock Name="expected2" Grid.Row="3" Grid.Column="1" Style="{StaticResource textBlockStyle}" Text="{Binding Matrix[2][1], Mode=TwoWay}"/>
-            <TextBlock Name="expected3" Grid.Row="4" Grid.Column="1" Style="{StaticResource textBlockStyle}" Text="{Binding Matrix[3][1], Mode=TwoWay}"/>
-            <TextBlock Name="expected4" Grid.Row="5" Grid.Column="1" Style="{StaticResource textBlockStyle}" Text="{Binding Matrix[4][1], Mode=TwoWay}"/>
+            <TextBlock Name="expected0" Grid.Row="1" Grid.Column="1" Style="{StaticResource textBlockStyle}"/>
+            <TextBlock Name="expected1" Grid.Row="2" Grid.Column="1" Style="{StaticResource textBlockStyle}"/>
+            <TextBlock Name="expected2" Grid.Row="3" Grid.Column="1" Style="{StaticResource textBlockStyle}"/>
+            <TextBlock Name="expected3" Grid.Row="4" Grid.Column="1" Style="{StaticResource textBlockStyle}"/>
+            <TextBlock Name="expected4" Grid.Row="5" Grid.Column="1" Style="{StaticResource textBlockStyle}"/>
         </Grid>
 
         <Button Name="mainPageButton" Content="Go back" Grid.Row="2" Style="{StaticResource buttonStyle}" Width="Auto" Click="mainPageButton_Click"/>

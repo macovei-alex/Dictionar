@@ -42,14 +42,20 @@ namespace Dictionar.Pages
 
 			for (int i = 0; i < MatrixContext.Matrix.Length; i++)
 			{
+				var guessTextBlock = (TextBlock)FindName($"answer{i}");
+				var expectedTextBlock = (TextBlock)FindName($"expected{i}");
+
+				guessTextBlock.Text = MatrixContext[i][0];
+				expectedTextBlock.Text = MatrixContext[i][1];
+
 				if (MatrixContext[i][0] == MatrixContext[i][1])
 				{
 					score++;
-					((TextBlock)FindName($"answer{i}")).Background = Brushes.LightGreen;
+					guessTextBlock.Background = Brushes.LightGreen;
 				}
 				else
 				{
-					((TextBlock)FindName($"answer{i}")).Background = Brushes.Red;
+					guessTextBlock.Background = Brushes.OrangeRed;
 				}
 			}
 
