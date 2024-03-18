@@ -15,11 +15,15 @@ namespace Dictionar.DataHandling
 		private bool DirectoriesCleaned { get; set; }
 		private Random RNG { get; }
 
-		public FileSystemDataSource(string directoryPath)
+		public FileSystemDataSource(string directoryPath, bool assumeDirectoriesCleaned = false)
 		{
 			DirectoryPath = directoryPath;
 
-			CleanDirectories();
+			if (!assumeDirectoriesCleaned)
+			{
+				CleanDirectories();
+			}
+
 			DirectoriesCleaned = true;
 			RNG = new Random();
 		}
