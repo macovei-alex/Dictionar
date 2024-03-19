@@ -155,7 +155,6 @@ namespace Dictionar.Pages
 			Guesses[QuestionCounter] = wordTextBox.Text;
 
 			QuestionCounter++;
-			wordTextBox.Text = string.Empty;
 			previousQuestionButton.IsEnabled = true;
 
 			if (QuestionCounter == QUESTION_COUNT)
@@ -170,6 +169,10 @@ namespace Dictionar.Pages
 				ParentWindow.MainFrame.Navigate(gameResultsPage);
 
 				return;
+			}
+			else
+			{
+				wordTextBox.Text = Guesses[QuestionCounter];
 			}
 
 			SetHint(Entries[QuestionCounter]);
